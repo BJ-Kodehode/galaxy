@@ -1,9 +1,9 @@
 "use client";
 
+import { Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
-import SearchAndFilter from "../components/SearchAndFilter";
-import StarList from "../components/StarList";
+import StarsContent from "./StarsContent";
 
 export default function StarsPage() {
   const searchParams = useSearchParams();
@@ -27,10 +27,11 @@ export default function StarsPage() {
   }, [searchParams]);
 
   return (
-    <main className="container mx-auto py-8 px-4">
-      <h1 className="text-3xl font-bold mb-6">Stjerner i Melkeveien</h1>
-      <SearchAndFilter type="stjerne" filters={["Solen", "Sirius", "Betelgeuse"]} />
-      {loading ? <div>Laster...</div> : <StarList stars={stars} />}
-    </main>
+    <Suspense fallback={<div>Laster stjernesiden...</div>}>
+      <main className="container mx-auto py-8 px-4">
+        <h1 className="text-3xl font-bold mb-6">Stjerner i Melkeveien</h1>
+        <StarsContent />
+      </main>
+    </Suspense>
   );
 }

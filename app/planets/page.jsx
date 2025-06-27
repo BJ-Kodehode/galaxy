@@ -1,11 +1,12 @@
 "use client";
 
+import { Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import SearchAndFilter from "../components/SearchAndFilter";
 import PlanetList from "../components/PlanetList";
 
-export default function PlanetsPage() {
+function PlanetsContent() {
   const searchParams = useSearchParams();
   const [planets, setPlanets] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -27,10 +28,18 @@ export default function PlanetsPage() {
   }, [searchParams]);
 
   return (
-    <main className="container mx-auto py-8 px-4">
+    <>
       <h1 className="text-3xl font-bold mb-6">Planeter i Melkeveien</h1>
       <SearchAndFilter type="planet" filters={["Jorden", "Mars", "Jupiter"]} />
       {loading ? <div>Laster...</div> : <PlanetList planets={planets} />}
-    </main>
+    </>
+  );
+}
+
+export default function PlanetsPage() {
+  return (
+    <Suspense fallback={<div>Laster planetsiden...</div>}>
+      <PlanetsContent />
+    </Suspense>
   );
 }
