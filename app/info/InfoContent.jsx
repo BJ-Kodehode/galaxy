@@ -23,7 +23,7 @@ export default function InfoContent() {
         <p>Solen befinner seg i Orionarmen. Avstanden til sentrum av galaksen, som ligger i retning av stjernebildet Skytten på himmelen vår, er noe mindre enn 9 000 parsec (30 000 lysår).</p>
         <p>Solens omløpstid rundt sentrum på 250 millioner år kalles et galaktisk år, og banehastigheten er 900 000 kilometer i timen. Sett fra Jorden sees stjernene i galakseskiven som et lysende bånd av stjerner.</p>
 
-        {/* Navigasjonsknapper fjernet etter ønske */}
+       
       </div>
     </main>
   );
