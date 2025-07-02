@@ -8,8 +8,10 @@ export default function Header() {
       <nav className="container mx-auto flex items-center justify-between py-4 px-6">
         <div className="flex items-center gap-6">
           <Link href="/" className="font-bold text-xl hover:text-blue-400 transition">Home</Link>
-          <Link href="/gallery" className="hover:text-blue-400 transition">Gallery</Link>
+          <Link href="/gallery" className="hover:text-blue-400 transition">Galleri</Link>
           <Link href="/info" className="hover:text-blue-400 transition">Info</Link>
+          <Link href="/planets" className="hover:text-blue-400 transition">Utforsk planeter</Link>
+          <Link href="/stars" className="hover:text-blue-400 transition">Utforsk stjerner</Link>
           <Link href="/overview" className="hover:text-blue-400 transition">Overview</Link>
         </div>
         <span className="italic text-sm text-gray-400">Melkeveien Galaxy Explorer</span>
