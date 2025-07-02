@@ -24,8 +24,8 @@ export default function InfoContent() {
         <p>Solens omløpstid rundt sentrum på 250 millioner år kalles et galaktisk år, og banehastigheten er 900 000 kilometer i timen. Sett fra Jorden sees stjernene i galakseskiven som et lysende bånd av stjerner.</p>
 
         <div className="flex flex-col md:flex-row gap-4 mt-8">
-          <a href="/planets" className="flex-1 bg-indigo-100 hover:bg-indigo-200 transition rounded-lg p-4 text-center font-semibold text-indigo-800 shadow border border-indigo-200">Utforsk planeter</a>
-          <a href="/stars" className="flex-1 bg-yellow-100 hover:bg-yellow-200 transition rounded-lg p-4 text-center font-semibold text-yellow-800 shadow border border-yellow-200">Utforsk stjerner</a>
+          <a href="#" className="flex-1 bg-indigo-100 hover:bg-indigo-200 transition rounded-lg p-4 text-center font-semibold text-indigo-800 shadow border border-indigo-200">Utforsk planeter</a>
+          <a href="#" className="flex-1 bg-yellow-100 hover:bg-yellow-200 transition rounded-lg p-4 text-center font-semibold text-yellow-800 shadow border border-yellow-200">Utforsk stjerner</a>
           <a href="/gallery" className="flex-1 bg-pink-100 hover:bg-pink-200 transition rounded-lg p-4 text-center font-semibold text-pink-800 shadow border border-pink-200">Galleri</a>
         </div>
       </div>
