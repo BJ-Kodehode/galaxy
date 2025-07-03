@@ -7,12 +7,22 @@ export default function GalleryContent() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    // Placeholder: fetch NASA images here later
-    setImages([
-      { url: "/starry.jpg", title: "Melkeveien" },
-      { url: "/globe.svg", title: "Planet" },
-    ]);
-    setLoading(false);
+    async function fetchAPOD() {
+      setLoading(true);
+      try {
+        const res = await fetch(`https://api.nasa.gov/planetary/apod?api_key=${process.env.NEXT_PUBLIC_NASA_API_KEY}&count=8`);
+        const data = await res.json();
+        // data is an array if count is used, or an object if not
+        const images = Array.isArray(data)
+          ? data.filter(item => item.media_type === "image").map(item => ({ url: item.url, title: item.title }))
+          : data.media_type === "image" ? [{ url: data.url, title: data.title }] : [];
+        setImages(images);
+      } catch (e) {
+        setImages([]);
+      }
+      setLoading(false);
+    }
+    fetchAPOD();
   }, []);
 
   return (
