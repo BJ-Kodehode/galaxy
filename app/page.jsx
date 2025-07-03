@@ -49,7 +49,7 @@ export default function Home() {
       </main>
       <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
         <span className="text-sm text-gray-500">
-          &copy; {new Date().getFullYear()} Melkeveien. All rights reserved.
+          
         </span>
       </footer>
     </div>
