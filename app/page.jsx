@@ -4,14 +4,7 @@ export default function Home() {
   return (
     <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
       <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/starry.jpg"
-          alt="Melkeveien logo"
-          width={120}
-          height={120}
-          priority
-        />
+        {/* Fjernet bilde av Melkeveien */}
         <h1 className="text-4xl font-bold mb-6 text-center">
           Velkommen til Melkeveien Explorer
         </h1>
@@ -20,6 +13,19 @@ export default function Home() {
           galaksen vår, søk og filtrer blant planeter og stjerner, og se flotte
           bilder fra NASA sitt arkiv.
         </p>
+        <div className="w-full flex justify-center mb-6">
+          <video
+            className="galaxy-video-fade rounded-lg shadow-lg"
+            src="https://cdn.pixabay.com/video/2018/09/30/18492-292594998_large.mp4"
+            width="720"
+            height="280"
+            style={{ maxWidth: '100%', height: 'auto', objectFit: 'cover' }}
+            autoPlay
+            loop
+            muted
+            playsInline
+          />
+        </div>
         <div className="flex flex-col md:flex-row gap-6 justify-center">
           <a
             href="/planets"
@@ -49,3 +55,16 @@ export default function Home() {
     </div>
   );
 }
+
+// Legg til animasjon i globals.css eller som style jsx:
+/*
+@keyframes galaxy-fade {
+  0% { opacity: 0.2; }
+  10% { opacity: 1; }
+  90% { opacity: 1; }
+  100% { opacity: 0.2; }
+}
+.animate-galaxy-fade {
+  animation: galaxy-fade 12s linear infinite;
+}
+*/
