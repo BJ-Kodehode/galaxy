@@ -24,8 +24,8 @@ export default function PlanetsContent() {
       </div>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         {/* Merkur */}
-        <div className="bg-white/80 rounded-xl shadow-lg p-6 border border-gray-200 flex flex-col items-center">
-          <img src="/Merkur.jpg" alt="Merkur" className="w-32 h-32 object-contain mb-4 rounded" />
+        <div className="bg-white/80 rounded-xl shadow-lg p-6 flex flex-col items-center">
+          <img src="/Merkur.jpg" alt="Merkur" className="mb-4 rounded object-scale-down max-w-full max-h-60" />
           <h2 className="text-2xl font-semibold mb-2 text-gray-800">Merkur</h2>
           <p className="text-gray-700 mb-2">Nærmeste planet til Sola og den minste i solsystemet. Overflaten er dekket av kratre, og temperaturen varierer fra -180°C til 430°C.</p>
           <p className="text-gray-700 mb-2">Diameter: 4 880 km</p>
@@ -35,8 +35,8 @@ export default function PlanetsContent() {
           <p className="text-gray-700">Kilde: NASA</p>
         </div>
         {/* Venus */}
-        <div className="bg-white/80 rounded-xl shadow-lg p-6 border border-gray-200 flex flex-col items-center">
-          <img src="/Venus.jpg" alt="Venus" className="w-32 h-32 object-contain mb-4 rounded" />
+        <div className="bg-white/80 rounded-xl shadow-lg p-6 flex flex-col items-center">
+          <img src="/Venus.jpg" alt="Venus" className="mb-4 rounded object-scale-down max-w-full max-h-60" />
           <h2 className="text-2xl font-semibold mb-2 text-gray-800">Venus</h2>
           <p className="text-gray-700 mb-2">Den nest nærmeste planeten til Sola og omtrent like stor som Jorden. Kjent for sin tette, giftige atmosfære og ekstreme overflatetemperaturer.</p>
           <p className="text-gray-700 mb-2">Diameter: 12 104 km</p>
@@ -46,8 +46,8 @@ export default function PlanetsContent() {
           <p className="text-gray-700">Kilde: NASA</p>
         </div>
         {/* Jorden */}
-        <div className="bg-white/80 rounded-xl shadow-lg p-6 border border-gray-200 flex flex-col items-center">
-          <img src="/Jorden.jpg" alt="Jorden" className="w-32 h-32 object-contain mb-4 rounded" />
+        <div className="bg-white/80 rounded-xl shadow-lg p-6 flex flex-col items-center">
+          <img src="/Jorden.jpg" alt="Jorden" className="mb-4 rounded object-scale-down max-w-full max-h-60" />
           <h2 className="text-2xl font-semibold mb-2 text-gray-800">Jorden</h2>
           <p className="text-gray-700 mb-2">Den eneste planeten vi vet har liv. Har en atmosfære som beskytter mot stråling og gir stabile temperaturer.</p>
           <p className="text-gray-700 mb-2">Diameter: 12 742 km</p>
@@ -57,8 +57,8 @@ export default function PlanetsContent() {
           <p className="text-gray-700">Kilde: NASA</p>
         </div>
         {/* Mars */}
-        <div className="bg-white/80 rounded-xl shadow-lg p-6 border border-gray-200 flex flex-col items-center">
-          <img src="/Mars.jpg" alt="Mars" className="w-32 h-32 object-contain mb-4 rounded" />
+        <div className="bg-white/80 rounded-xl shadow-lg p-6 flex flex-col items-center">
+          <img src="/Mars.jpg" alt="Mars" className="mb-4 rounded object-scale-down max-w-full max-h-60" />
           <h2 className="text-2xl font-semibold mb-2 text-gray-800">Mars</h2>
           <p className="text-gray-700 mb-2">Kjent som den røde planeten. Har iskalde ørkener, tynn atmosfære og spor av tidligere vann.</p>
           <p className="text-gray-700 mb-2">Diameter: 6 779 km</p>
@@ -68,8 +68,8 @@ export default function PlanetsContent() {
           <p className="text-gray-700">Kilde: NASA</p>
         </div>
         {/* Jupiter */}
-        <div className="bg-white/80 rounded-xl shadow-lg p-6 border border-gray-200 flex flex-col items-center">
-          <img src="/Jupiter.jpg" alt="Jupiter" className="w-32 h-32 object-contain mb-4 rounded" />
+        <div className="bg-white/80 rounded-xl shadow-lg p-6 flex flex-col items-center">
+          <img src="/Jupiter.jpg" alt="Jupiter" className="mb-4 rounded object-scale-down max-w-full max-h-60" />
           <h2 className="text-2xl font-semibold mb-2 text-gray-800">Jupiter</h2>
           <p className="text-gray-700 mb-2">Den største planeten i solsystemet. Kjent for sine fargerike skyer og den store røde flekken, en gigantisk storm.</p>
           <p className="text-gray-700 mb-2">Diameter: 139 820 km</p>
@@ -79,8 +79,8 @@ export default function PlanetsContent() {
           <p className="text-gray-700">Kilde: NASA</p>
         </div>
         {/* Saturn */}
-        <div className="bg-white/80 rounded-xl shadow-lg p-6 border border-gray-200 flex flex-col items-center">
-          <img src="/Saturn.jpg" alt="Saturn" className="w-32 h-32 object-contain mb-4 rounded" />
+        <div className="bg-white/80 rounded-xl shadow-lg p-6 flex flex-col items-center">
+          <img src="/Saturn.jpg" alt="Saturn" className="mb-4 rounded object-scale-down max-w-full max-h-60" />
           <h2 className="text-2xl font-semibold mb-2 text-gray-800">Saturn</h2>
           <p className="text-gray-700 mb-2">Berømt for sitt spektakulære ringsystem. Har mange måner, inkludert Titan med tykk atmosfære.</p>
           <p className="text-gray-700 mb-2">Diameter: 116 460 km</p>
@@ -90,8 +90,8 @@ export default function PlanetsContent() {
           <p className="text-gray-700">Kilde: NASA</p>
         </div>
         {/* Uranus */}
-        <div className="bg-white/80 rounded-xl shadow-lg p-6 border border-gray-200 flex flex-col items-center">
-          <img src="/Uranus.jpg" alt="Uranus" className="w-32 h-32 object-contain mb-4 rounded" />
+        <div className="bg-white/80 rounded-xl shadow-lg p-6 flex flex-col items-center">
+          <img src="/Uranus.jpg" alt="Uranus" className="mb-4 rounded object-scale-down max-w-full max-h-60" />
           <h2 className="text-2xl font-semibold mb-2 text-gray-800">Uranus</h2>
           <p className="text-gray-700 mb-2">En iskjempe med blågrønn farge på grunn av metan i atmosfæren. Roterer "liggende" på siden.</p>
           <p className="text-gray-700 mb-2">Diameter: 50 724 km</p>
@@ -101,8 +101,8 @@ export default function PlanetsContent() {
           <p className="text-gray-700">Kilde: NASA</p>
         </div>
         {/* Neptun */}
-        <div className="bg-white/80 rounded-xl shadow-lg p-6 border border-gray-200 flex flex-col items-center">
-          <img src="/Neptun.jpg" alt="Neptun" className="w-32 h-32 object-contain mb-4 rounded" />
+        <div className="bg-white/80 rounded-xl shadow-lg p-6 flex flex-col items-center">
+          <img src="/Neptun.jpg" alt="Neptun" className="mb-4 rounded object-scale-down max-w-full max-h-60" />
           <h2 className="text-2xl font-semibold mb-2 text-gray-800">Neptun</h2>
           <p className="text-gray-700 mb-2">Den ytterste planeten i solsystemet. Kjent for sine sterke vinder og dype blåfarge.</p>
           <p className="text-gray-700 mb-2">Diameter: 49 244 km</p>

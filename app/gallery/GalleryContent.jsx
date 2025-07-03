@@ -35,8 +35,7 @@ export default function GalleryContent() {
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
           {galleryImages.map((img, idx) => (
             <div key={idx} className="bg-white rounded shadow p-2 flex flex-col items-center">
-              <img src={`/Gallery/${img}`} alt={img} className="w-full h-40 object-contain mb-2" />
-              <span className="text-xs text-gray-700 font-semibold break-all">{img}</span>
+              <img src={`/Gallery/${img}`} alt="Galleri-bilde" className="w-full h-40 object-contain mb-2" />
             </div>
           ))}
         </div>
