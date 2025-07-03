@@ -12,7 +12,7 @@ export default function Header() {
           <Link href="/info" className="hover:text-blue-400 transition">Info</Link>
           <Link href="/planets" className="hover:text-blue-400 transition">Utforsk planeter</Link>
           <Link href="/stars" className="hover:text-blue-400 transition">Utforsk stjerner</Link>
-          <Link href="/overview" className="hover:text-blue-400 transition">Overview</Link>
+          
         </div>
         <span className="italic text-sm text-gray-400">Melkeveien Galaxy Explorer</span>
       </nav>
