@@ -34,13 +34,13 @@ export default function GalleryContent() {
       ) : (
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
           {galleryImages.map((img, idx) => (
-            <div key={idx} className="bg-white rounded shadow p-2 flex flex-col items-center">
-              <img src={`/Gallery/${img}`} alt="Galleri-bilde" className="w-full h-40 object-contain mb-2" />
+            <div key={idx} className="flex flex-col items-center">
+              <img src={`/Gallery/${img}`} alt="Galleri-bilde" className="mb-2 object-scale-down max-w-full max-h-[400px]" />
             </div>
           ))}
         </div>
       )}
-      <div className="text-xs text-gray-500 mt-4">Legg til flere bilder i <b>/public/Gallery</b> for å utvide galleriet. Siden oppdateres automatisk.</div>
+     
     </main>
   );
 }
