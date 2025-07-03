@@ -1,6 +1,6 @@
 "use client";
 
-import SearchAndFilter from '../components/SearchAndFilter';
+
 import PlanetList from '../components/PlanetList';
 import { useSearchParams } from 'next/navigation';
 import { useEffect, useState } from 'react';

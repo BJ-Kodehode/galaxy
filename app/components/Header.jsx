@@ -14,7 +14,7 @@ export default function Header() {
           <Link href="/stars" className="hover:text-blue-400 transition">Utforsk stjerner</Link>
           
         </div>
-        <span className="italic text-sm text-gray-400">Melkeveien Galaxy Explorer</span>
+        
       </nav>
     </header>
   );
