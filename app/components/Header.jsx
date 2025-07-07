@@ -26,18 +26,18 @@ export default function Header() {
           </button>
         ) : (
           <button
-            className="sm:hidden absolute right-4 top-2 p-2 focus:outline-none"
+            className="sm:hidden absolute right-4 top-2 p-2 flex items-center justify-center focus:outline-none"
             aria-label="Lukk meny"
             onClick={() => setOpen(false)}
-            style={{ position: 'relative', width: 32, height: 32 }}
+            style={{ width: 40, height: 40, position: 'absolute', right: 16, top: 8 }}
           >
             <span
-              className="block w-6 h-0.5 bg-white rounded"
-              style={{ position: 'absolute', left: 0, right: 0, top: '50%', transform: 'translateY(-50%) rotate(45deg)' }}
+              className="absolute block w-6 h-0.5 bg-white rounded"
+              style={{ left: '50%', top: '50%', width: '24px', height: '3px', transform: 'translate(-50%, -50%) rotate(45deg)' }}
             ></span>
             <span
-              className="block w-6 h-0.5 bg-white rounded"
-              style={{ position: 'absolute', left: 0, right: 0, top: '50%', transform: 'translateY(-50%) rotate(-45deg)' }}
+              className="absolute block w-6 h-0.5 bg-white rounded"
+              style={{ left: '50%', top: '50%', width: '24px', height: '3px', transform: 'translate(-50%, -50%) rotate(-45deg)' }}
             ></span>
           </button>
         )}
