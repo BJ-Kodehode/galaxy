@@ -13,16 +13,27 @@ export default function Header() {
         <div className="flex items-center w-full sm:w-auto justify-center sm:justify-start">
           <Link href="/" className="font-bold text-lg sm:text-xl hover:text-blue-400 transition mr-4 sm:mr-8">Home</Link>
         </div>
-        {/* Hamburger for mobile */}
-        <button
-          className="sm:hidden absolute right-4 top-2 p-2 focus:outline-none"
-          aria-label="Åpne meny"
-          onClick={() => setOpen((v) => !v)}
-        >
-          <span className="block w-6 h-0.5 bg-white mb-1 rounded"></span>
-          <span className="block w-6 h-0.5 bg-white mb-1 rounded"></span>
-          <span className="block w-6 h-0.5 bg-white rounded"></span>
-        </button>
+        {/* Hamburger for mobile, bytt til kryss når åpen */}
+        {!open ? (
+          <button
+            className="sm:hidden absolute right-4 top-2 p-2 focus:outline-none"
+            aria-label="Åpne meny"
+            onClick={() => setOpen(true)}
+          >
+            <span className="block w-6 h-0.5 bg-white mb-1 rounded"></span>
+            <span className="block w-6 h-0.5 bg-white mb-1 rounded"></span>
+            <span className="block w-6 h-0.5 bg-white rounded"></span>
+          </button>
+        ) : (
+          <button
+            className="sm:hidden absolute right-4 top-2 p-2 focus:outline-none"
+            aria-label="Lukk meny"
+            onClick={() => setOpen(false)}
+          >
+            <span className="block w-6 h-0.5 bg-white rotate-45 translate-y-2.5"></span>
+            <span className="block w-6 h-0.5 bg-white -rotate-45 -translate-y-2.5"></span>
+          </button>
+        )}
         {/* Desktop meny */}
         <div className="hidden sm:flex items-center gap-4 sm:gap-6 w-full sm:w-auto justify-center sm:justify-end flex-wrap">
           <Link href="/gallery" className="hover:text-blue-400 transition text-base sm:text-lg">Galleri</Link>
