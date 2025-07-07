@@ -41,14 +41,14 @@ export default function GalleryContent() {
   };
 
   return (
-    <main className="container mx-auto py-8 px-4">
+    <main className="container mx-auto py-6 px-2 sm:py-8 sm:px-4">
       <h1 className="text-3xl font-bold mb-6">Galleri: Bilder fra universet</h1>
       {loading ? (
         <div>Laster bilder...</div>
       ) : error ? (
         <div className="text-red-600">{error}</div>
       ) : (
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-2 sm:gap-4">
           {galleryImages.map((img, idx) => (
             <button
               key={idx}
@@ -59,7 +59,7 @@ export default function GalleryContent() {
               <img
                 src={`/Gallery/${img}`}
                 alt="Galleri-bilde"
-                className="mb-2 object-scale-down max-w-full max-h-[400px] rounded-lg shadow-lg border-2 border-red-500/80 hover:border-red-400 focus:ring-2 focus:ring-red-400 transition"
+                className="mb-1 sm:mb-2 object-scale-down max-w-full max-h-[160px] sm:max-h-[220px] md:max-h-[400px] rounded-lg shadow-lg border-2 border-red-500/80 hover:border-red-400 focus:ring-2 focus:ring-red-400 transition"
                 style={{ boxShadow: "0 0 12px 2px #ff6f00aa" }}
               />
             </button>
@@ -80,7 +80,7 @@ export default function GalleryContent() {
           <img
             src={`/Gallery/${galleryImages[currentIdx]}`}
             alt="Galleri-bilde stort"
-            className="max-h-[80vh] max-w-[90vw] rounded-lg border-2 border-red-500 shadow-2xl"
+            className="max-h-[60vh] sm:max-h-[80vh] max-w-[96vw] sm:max-w-[90vw] rounded-lg border-2 border-red-500 shadow-2xl"
             style={{ boxShadow: "0 0 32px 8px #ff6f00cc" }}
           />
           <button

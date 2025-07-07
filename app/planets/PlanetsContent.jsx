@@ -118,20 +118,20 @@ export default function PlanetsContent() {
   };
 
   return (
-    <main className="container mx-auto py-8 px-4">
-      <h1 className="text-4xl font-extrabold mb-10 text-center text-indigo-700 drop-shadow">
+    <main className="container mx-auto py-6 px-2 sm:py-8 sm:px-4">
+      <h1 className="text-2xl sm:text-4xl font-extrabold mb-6 sm:mb-10 text-center text-indigo-700 drop-shadow">
         Utforsk planetene
       </h1>
-      <div className="flex flex-col items-center mb-8">
+      <div className="flex flex-col items-center mb-4 sm:mb-8">
         <span className="text-xs text-gray-500">
           Kilde: NASA, solarsystem.nasa.gov
         </span>
       </div>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-8">
         {planets.map((planet, idx) => (
           <div
             key={planet.name}
-            className="bg-white/80 rounded-xl shadow-lg p-6 flex flex-col items-center cursor-pointer hover:scale-105 transition"
+            className="bg-white/80 rounded-xl shadow-lg p-4 sm:p-6 flex flex-col items-center cursor-pointer hover:scale-105 transition"
             onClick={() => openModal(idx)}
             tabIndex={0}
             aria-label={`Åpne detaljer for ${planet.name}`}
@@ -139,18 +139,18 @@ export default function PlanetsContent() {
             <img
               src={planet.img}
               alt={planet.name}
-              className="mb-4 rounded object-scale-down max-w-full max-h-60"
+              className="mb-2 sm:mb-4 rounded object-scale-down max-w-full max-h-40 sm:max-h-60"
               draggable={false}
             />
-            <h2 className="text-2xl font-semibold mb-2 text-gray-800">
+            <h2 className="text-lg sm:text-2xl font-semibold mb-1 sm:mb-2 text-gray-800 text-center">
               {planet.name}
             </h2>
             {planet.facts.map((fact, i) => (
-              <p className="text-gray-700 mb-2" key={i}>
+              <p className="text-gray-700 mb-1 sm:mb-2 text-center" key={i}>
                 {fact}
               </p>
             ))}
-            <p className="text-gray-700">Kilde: NASA</p>
+            <p className="text-gray-700 text-xs sm:text-sm text-center">Kilde: NASA</p>
           </div>
         ))}
       </div>
@@ -158,15 +158,15 @@ export default function PlanetsContent() {
       {/* Modal for planetdetaljer */}
       {modalOpen && (
         <div
-          className="fixed inset-0 z-50 flex items-center justify-center bg-black/70"
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 px-2"
           onClick={closeModal}
         >
           <div
-            className="relative bg-white rounded-xl shadow-lg p-8 max-w-md w-full flex flex-col items-center"
+            className="relative bg-white rounded-xl shadow-lg p-4 sm:p-8 max-w-xs sm:max-w-md w-full flex flex-col items-center"
             onClick={(e) => e.stopPropagation()}
           >
             <button
-              className="absolute top-2 right-2 text-2xl text-gray-500 hover:text-gray-800"
+              className="absolute top-2 right-2 text-xl sm:text-2xl text-gray-500 hover:text-gray-800"
               onClick={closeModal}
               aria-label="Lukk"
             >
@@ -175,27 +175,27 @@ export default function PlanetsContent() {
             <img
               src={planets[currentIdx].img}
               alt={planets[currentIdx].name}
-              className="mb-4 rounded object-scale-down max-w-full max-h-60"
+              className="mb-2 sm:mb-4 rounded object-scale-down max-w-full max-h-40 sm:max-h-60"
               draggable={false}
             />
-            <h2 className="text-2xl font-semibold mb-2 text-gray-800">
+            <h2 className="text-lg sm:text-2xl font-semibold mb-1 sm:mb-2 text-gray-800 text-center">
               {planets[currentIdx].name}
             </h2>
             {planets[currentIdx].facts.map((fact, i) => (
-              <p className="text-gray-700 mb-2" key={i}>
+              <p className="text-gray-700 mb-1 sm:mb-2 text-center" key={i}>
                 {fact}
               </p>
             ))}
-            <div className="flex gap-6 mt-4">
+            <div className="flex gap-4 sm:gap-6 mt-2 sm:mt-4">
               <button
-                className="px-4 py-2 bg-indigo-600 text-white rounded hover:bg-indigo-700 transition"
+                className="px-2 sm:px-4 py-1 sm:py-2 bg-indigo-600 text-white rounded hover:bg-indigo-700 transition text-xs sm:text-base"
                 onClick={prevPlanet}
                 aria-label="Forrige planet"
               >
                 &#8592; Forrige
               </button>
               <button
-                className="px-4 py-2 bg-indigo-600 text-white rounded hover:bg-indigo-700 transition"
+                className="px-2 sm:px-4 py-1 sm:py-2 bg-indigo-600 text-white rounded hover:bg-indigo-700 transition text-xs sm:text-base"
                 onClick={nextPlanet}
                 aria-label="Neste planet"
               >

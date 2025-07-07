@@ -9,12 +9,29 @@
   pointer-events: none;
   /* Inspirert av https://cdn.pixabay.com/photo/2017/08/07/09/31/stars-2601927_640.jpg */
   background:
-    /* Dyp blå-lilla galaksegradient */
     radial-gradient(ellipse at 60% 20%, rgba(120,140,255,0.22) 0%, transparent 60%),
     radial-gradient(ellipse at 30% 80%, rgba(255,200,255,0.13) 0%, transparent 70%),
     radial-gradient(ellipse at 80% 70%, rgba(255,255,220,0.10) 0%, transparent 70%),
     radial-gradient(ellipse at 50% 50%, rgba(40,30,80,0.45) 0%, transparent 80%),
     linear-gradient(180deg, #0a0a1a 0%, #18182a 100%);
+}
+
+@media (max-width: 600px) {
+  .bg-cosmic {
+    width: 100vw;
+    height: 100vh;
+    background:
+      radial-gradient(ellipse at 60% 20%, rgba(120,140,255,0.18) 0%, transparent 50%),
+      radial-gradient(ellipse at 30% 80%, rgba(255,200,255,0.10) 0%, transparent 60%),
+      radial-gradient(ellipse at 80% 70%, rgba(255,255,220,0.08) 0%, transparent 60%),
+      radial-gradient(ellipse at 50% 50%, rgba(40,30,80,0.30) 0%, transparent 70%),
+      linear-gradient(180deg, #0a0a1a 0%, #18182a 100%);
+  }
+  .cosmic-star {
+    /* Mindre stjerner på mobil for bedre ytelse og visuell balanse */
+    width: 0.8em !important;
+    height: 0.8em !important;
+  }
 }
 
 
