@@ -1,38 +1,31 @@
 "use client";
-import React, { useRef, useState, useEffect } from "react";
-import ReactPlayer from "react-player";
+import { useRef, useEffect, useState } from "react";
 
 export default function BackgroundMusic() {
-  const [play, setPlay] = useState(false);
-  const hasStarted = useRef(false);
+  const audioRef = useRef(null);
+  const [started, setStarted] = useState(false);
 
   useEffect(() => {
-    function startMusic() {
-      if (!hasStarted.current) {
-        setPlay(true);
-        hasStarted.current = true;
+    function start() {
+      if (!started && audioRef.current) {
+        audioRef.current.play();
+        setStarted(true);
       }
     }
-    window.addEventListener("pointerdown", startMusic, { once: true });
-    window.addEventListener("keydown", startMusic, { once: true });
+    window.addEventListener("pointerdown", start, { once: true });
+    window.addEventListener("keydown", start, { once: true });
     return () => {
-      window.removeEventListener("pointerdown", startMusic);
-      window.removeEventListener("keydown", startMusic);
+      window.removeEventListener("pointerdown", start);
+      window.removeEventListener("keydown", start);
     };
-  }, []);
+  }, [started]);
 
   return (
-    <div style={{ width: 0, height: 0, overflow: "hidden", position: "fixed", zIndex: -1 }}>
-      <ReactPlayer
-        url="https://www.youtube.com/watch?v=LLFhKaqnWwk"
-        playing={play}
-        loop
-        controls={false}
-        volume={0.5}
-        width={0}
-        height={0}
-        config={{ youtube: { playerVars: { modestbranding: 1 } } }}
-      />
-    </div>
+    <audio
+      ref={audioRef}
+      src="/remix.mp3"
+      loop
+      style={{ display: "none" }}
+    />
   );
 }
