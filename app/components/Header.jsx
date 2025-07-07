@@ -4,6 +4,8 @@
 import Link from 'next/link';
 import { useState } from 'react';
 
+
+export default function Header() {
   const [open, setOpen] = useState(false);
   return (
     <header className="bg-gray-900 text-white shadow-md sticky top-0 z-50 w-full">
@@ -40,4 +42,4 @@ import { useState } from 'react';
       </nav>
     </header>
   );
-// Add fade-in animation for mobile menu
+}
