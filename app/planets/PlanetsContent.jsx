@@ -150,28 +150,6 @@ export default function PlanetsContent() {
 
   return (
     <main className="container mx-auto py-6 px-2 sm:py-8 sm:px-4">
-      {/* NASA Fun Fact */}
-      <div className="mb-8 flex flex-col items-center">
-        <h2 className="text-lg sm:text-xl font-bold text-indigo-700 mb-2">NASA Fun Fact</h2>
-        {loadingFact ? (
-          <p className="text-gray-600">Laster ...</p>
-        ) : factError ? (
-          <p className="text-red-600">{factError}</p>
-        ) : funFact ? (
-          <div className="max-w-xl text-center">
-            <p className="text-gray-800 mb-2 font-semibold">{funFact.title}</p>
-            <p className="text-red-600 text-sm mb-2">{funFact.explanation}</p>
-            <span className="text-xs text-gray-500">Kilde: NASA APOD</span>
-          </div>
-        ) : null}
-        <button
-          className="mt-3 px-4 py-1 bg-indigo-600 text-white rounded hover:bg-indigo-700 transition text-sm"
-          onClick={() => fetchFunFact(getRandomDate())}
-          disabled={loadingFact}
-        >
-          {loadingFact ? 'Laster...' : 'Ny fun fact'}
-        </button>
-      </div>
       <h1 className="text-2xl sm:text-4xl font-extrabold mb-6 sm:mb-10 text-center text-indigo-700 drop-shadow">
         Utforsk planetene
       </h1>
@@ -258,6 +236,29 @@ export default function PlanetsContent() {
           </div>
         </div>
       )}
+
+      {/* NASA Fun Fact */}
+      <div className="mt-12 mb-4 flex flex-col items-center">
+        <h2 className="text-lg sm:text-xl font-bold text-indigo-700 mb-2">NASA Fun Fact</h2>
+        {loadingFact ? (
+          <p className="text-gray-600">Laster ...</p>
+        ) : factError ? (
+          <p className="text-red-600">{factError}</p>
+        ) : funFact ? (
+          <div className="max-w-xl text-center">
+            <p className="text-gray-800 mb-2 font-semibold">{funFact.title}</p>
+            <p className="text-red-600 text-sm mb-2">{funFact.explanation}</p>
+            <span className="text-xs text-gray-500">Kilde: NASA APOD</span>
+          </div>
+        ) : null}
+        <button
+          className="mt-3 px-4 py-1 bg-indigo-600 text-white rounded hover:bg-indigo-700 transition text-sm"
+          onClick={() => fetchFunFact(getRandomDate())}
+          disabled={loadingFact}
+        >
+          {loadingFact ? 'Laster...' : 'Ny fun fact'}
+        </button>
+      </div>
     </main>
   );
 }
