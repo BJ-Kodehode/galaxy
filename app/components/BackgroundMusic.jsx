@@ -1,6 +1,6 @@
 "use client";
 import React, { useRef, useState, useEffect } from "react";
-import ReactPlayer from "react-player/youtube";
+import ReactPlayer from "react-player";
 
 export default function BackgroundMusic() {
   const [play, setPlay] = useState(false);
