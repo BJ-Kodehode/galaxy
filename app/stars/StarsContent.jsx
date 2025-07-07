@@ -6,8 +6,64 @@ import { useSearchParams } from 'next/navigation';
 import { useEffect, useState } from 'react';
 
 export default function StarsContent() {
+  // NASA APOD Fun Fact
+  const [funFact, setFunFact] = useState(null);
+  const [loadingFact, setLoadingFact] = useState(false);
+  const [factError, setFactError] = useState(null);
+
+  async function fetchFunFact(date) {
+    setLoadingFact(true);
+    setFactError(null);
+    let url = `https://api.nasa.gov/planetary/apod?api_key=DEMO_KEY`;
+    if (date) url += `&date=${date}`;
+    try {
+      const res = await fetch(url);
+      if (!res.ok) throw new Error('API-feil');
+      const data = await res.json();
+      setFunFact(data);
+    } catch (e) {
+      setFactError('Kunne ikke hente fun fact fra NASA.');
+    } finally {
+      setLoadingFact(false);
+    }
+  }
+
+  useEffect(() => {
+    fetchFunFact();
+  }, []);
+
+  function getRandomDate() {
+    const start = new Date(1995, 5, 16);
+    const end = new Date();
+    const random = new Date(start.getTime() + Math.random() * (end.getTime() - start.getTime()));
+    return random.toISOString().slice(0, 10);
+  }
+
   return (
     <main className="container mx-auto py-6 px-2 sm:py-8 sm:px-4">
+      {/* NASA Fun Fact */}
+      <div className="mb-8 flex flex-col items-center">
+        <h2 className="text-lg sm:text-xl font-bold text-yellow-700 mb-2">NASA Fun Fact</h2>
+        {loadingFact ? (
+          <p className="text-gray-600">Laster ...</p>
+        ) : factError ? (
+          <p className="text-red-600">{factError}</p>
+        ) : funFact ? (
+          <div className="max-w-xl text-center">
+            <p className="text-gray-800 mb-2 font-semibold">{funFact.title}</p>
+            <p className="text-red-600 text-sm mb-2">{funFact.explanation}</p>
+            <span className="text-xs text-gray-500">Kilde: NASA APOD</span>
+          </div>
+        ) : null}
+        <button
+          className="mt-3 px-4 py-1 bg-yellow-600 text-white rounded hover:bg-yellow-700 transition text-sm"
+          onClick={() => fetchFunFact(getRandomDate())}
+          disabled={loadingFact}
+        >
+          {loadingFact ? 'Laster...' : 'Ny fun fact'}
+        </button>
+      </div>
+      {/* ...eksisterende innhold... */}
       <h1 className="text-2xl sm:text-4xl font-extrabold mb-6 sm:mb-10 text-center text-yellow-700 drop-shadow">Stjerner</h1>
       <div className="flex flex-col items-center mb-4 sm:mb-8">
         <img
