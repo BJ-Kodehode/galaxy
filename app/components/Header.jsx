@@ -29,9 +29,16 @@ export default function Header() {
             className="sm:hidden absolute right-4 top-2 p-2 focus:outline-none"
             aria-label="Lukk meny"
             onClick={() => setOpen(false)}
+            style={{ position: 'relative', width: 32, height: 32 }}
           >
-            <span className="block w-6 h-0.5 bg-white rotate-45 translate-y-2.5"></span>
-            <span className="block w-6 h-0.5 bg-white -rotate-45 -translate-y-2.5"></span>
+            <span
+              className="block w-6 h-0.5 bg-white rounded"
+              style={{ position: 'absolute', left: 0, right: 0, top: '50%', transform: 'translateY(-50%) rotate(45deg)' }}
+            ></span>
+            <span
+              className="block w-6 h-0.5 bg-white rounded"
+              style={{ position: 'absolute', left: 0, right: 0, top: '50%', transform: 'translateY(-50%) rotate(-45deg)' }}
+            ></span>
           </button>
         )}
         {/* Desktop meny */}
