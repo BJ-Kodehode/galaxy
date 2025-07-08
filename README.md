@@ -1,3 +1,62 @@
+# Galaxy Explorer
+
+Galaxy Explorer er en moderne, responsiv Next.js-applikasjon som lar deg utforske Melkeveien og vårt solsystem på en visuelt rik og vitenskapelig korrekt måte. Prosjektet er laget for å inspirere og informere om planeter, stjerner og verdensrommet, med ekte fakta og bilder fra NASA.
+
+## Hovedfunksjoner
+
+- **Planeter og stjerner:** Fakta, bilder og utforskning av solsystemets planeter og kjente stjerner i Melkeveien.
+- **Dynamisk galleri:** Bildegalleri med modal-visning og navigasjon, basert på lokale bilder og/eller NASA-data.
+- **Info-sider:** Moderne, rikt innhold om galaksen, universet og prosjektet.
+- **Responsivt design:** Optimalisert for mobil, nettbrett og desktop.
+- **Universell bakgrunn:** Animerte stjerner og kosmisk gradient gir en stemningsfull opplevelse.
+- **Hamburgermeny:** Mobilvennlig navigasjon med animert X-ikon.
+- **NASA Fun Fact:** Henter daglige eller tilfeldige fakta fra NASA APOD API og viser dem på planetside og stjerneside.
+- **Bakgrunnsmusikk:** Spiller av remix.mp3 fra public-mappen automatisk etter første brukerinteraksjon.
+
+## Teknologi
+- **Next.js 15** (App Router)
+- **React**
+- **Tailwind CSS**
+- **Ekte NASA-data/APOD API**
+- **Dynamisk import av bilder fra /public/Gallery**
+
+## Kom i gang
+1. Klon repoet:
+   ```bash
+   git clone https://github.com/BJ-Kodehode/galaxy.git
+   cd galaxy
+   ```
+2. Installer avhengigheter:
+   ```bash
+   npm install
+   ```
+3. Start utviklingsserver:
+   ```bash
+   npm run dev
+   ```
+4. Åpne [http://localhost:3000](http://localhost:3000) i nettleseren.
+
+## Mappestruktur
+- `app/` – Next.js App Router, sider og komponenter
+- `public/` – Bilder, remix.mp3 og statiske filer
+- `app/components/` – Gjenbrukbare React-komponenter (Header, Footer, CosmicBackground, BackgroundMusic, etc.)
+- `app/planets/` – PlanetsContent.jsx (planetside)
+- `app/stars/` – StarsContent.jsx (stjerneside)
+- `app/gallery/` – GalleryContent.jsx (bildegalleri)
+- `app/info/` – InfoContent.jsx (info om galaksen)
+
+## Spesielle funksjoner
+- **Bakgrunnsmusikk:** remix.mp3 spilles automatisk etter første klikk/tastetrykk.
+- **NASA Fun Fact:** Fakta hentes fra NASA APOD API og vises nederst på planetside og stjerneside.
+- **Universell bakgrunn:** 3500+ animerte stjerner og kosmisk gradient på alle sider.
+
+## Lisens
+Dette prosjektet er kun for læring og ikke-kommersielt bruk. NASA-bilder og -data er offentlig tilgjengelig, men sjekk alltid kilde og bruksvilkår.
+
+---
+
+**Laget av Kodehode-teamet, 2025.**
+
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
