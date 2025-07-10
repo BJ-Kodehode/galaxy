@@ -22,13 +22,16 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
+    <html lang="en" style={{ height: "100%" }}>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-screen flex flex-col`}
+        style={{ minHeight: "100vh", display: "flex", flexDirection: "column" }}
       >
         <CosmicBackground />
         <Header />
-        {children}
+        <div style={{ flex: 1, display: "flex", flexDirection: "column" }}>
+          {children}
+        </div>
         <Footer />
         <BackgroundMusic />
       </body>
