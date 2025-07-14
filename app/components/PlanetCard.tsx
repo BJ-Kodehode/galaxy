@@ -21,7 +21,7 @@ const PlanetCard: React.FC<PlanetCardProps> = ({
   ariaLabel,
 }) => (
   <div
-    className="bg-white/80 rounded-xl shadow-lg p-4 sm:p-6 flex flex-col items-center cursor-pointer hover:scale-105 transition"
+    className="bg-indigo-900/70 rounded-xl shadow-lg p-4 sm:p-6 flex flex-col items-center cursor-pointer hover:scale-105 transition border border-indigo-700"
     onClick={onClick}
     tabIndex={tabIndex}
     aria-label={ariaLabel || `Detaljer for ${name}`}
