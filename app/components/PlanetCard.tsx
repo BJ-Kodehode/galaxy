@@ -1,4 +1,5 @@
 import React from "react";
+import Image from "next/image";
 
 export interface PlanetCardProps {
   name: string;
@@ -25,14 +26,14 @@ const PlanetCard: React.FC<PlanetCardProps> = ({
     tabIndex={tabIndex}
     aria-label={ariaLabel || `Detaljer for ${name}`}
   >
-    <img
+    <Image
       src={img}
       alt={name}
       className="mb-2 sm:mb-4 rounded object-scale-down max-w-full max-h-40 sm:max-h-60"
       draggable={false}
       width={240}
       height={160}
-      loading="lazy"
+      priority={false}
     />
     <h2 className="text-lg sm:text-2xl font-semibold mb-1 sm:mb-2 text-gray-800 text-center">
       {name}
