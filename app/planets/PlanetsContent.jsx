@@ -95,6 +95,65 @@ export default function PlanetsContent() {
     },
   ];
 
+  // Dvergplaneter
+  const dwarfPlanets = [
+    {
+      name: "Pluto",
+      img: "/Pluto.jpg",
+      facts: [
+        "Pluto var tidligere regnet som den niende planeten, men er nå klassifisert som en dvergplanet.",
+        "Diameter: 2 377 km",
+        "Avstand fra Sola: 5,9 milliarder km",
+        "Atmosfære: Nitrogen, metan, karbonmonoksid",
+        "Måner: 5 (bl.a. Charon)",
+      ],
+    },
+    {
+      name: "Eris",
+      img: "/Eris.jpg",
+      facts: [
+        "Eris er den mest massive kjente dvergplaneten i solsystemet og er litt mindre enn Pluto.",
+        "Diameter: 2 326 km",
+        "Avstand fra Sola: ca. 10,1 milliarder km",
+        "Atmosfære: Ingen kjent",
+        "Måner: 1 (Dysnomia)",
+      ],
+    },
+    {
+      name: "Haumea",
+      img: "/Haumea.jpg",
+      facts: [
+        "Haumea har en avlang form og roterer svært raskt.",
+        "Diameter: ca. 1 632 × 996 km",
+        "Avstand fra Sola: ca. 6,5 milliarder km",
+        "Atmosfære: Ingen kjent",
+        "Måner: 2",
+      ],
+    },
+    {
+      name: "Makemake",
+      img: "/Makemake.jpg",
+      facts: [
+        "Makemake er en lys og isrik dvergplanet i Kuiperbeltet.",
+        "Diameter: ca. 1 430 km",
+        "Avstand fra Sola: ca. 6,8 milliarder km",
+        "Atmosfære: Ingen kjent",
+        "Måner: 1",
+      ],
+    },
+    {
+      name: "Ceres",
+      img: "/Ceres.jpg",
+      facts: [
+        "Ceres er den største asteroiden i asteroidebeltet og den eneste dvergplaneten i den indre delen av solsystemet.",
+        "Diameter: 940 km",
+        "Avstand fra Sola: 413 millioner km",
+        "Atmosfære: Tynn, vanndamp",
+        "Måner: 0",
+      ],
+    },
+  ];
+
   // NASA APOD Fun Fact
   const [funFact, setFunFact] = useState(null);
   const [loadingFact, setLoadingFact] = useState(false);
@@ -236,6 +295,35 @@ export default function PlanetsContent() {
           </div>
         </div>
       )}
+
+      {/* Dvergplaneter */}
+      <h2 className="text-xl sm:text-2xl font-bold mt-12 mb-4 text-center text-indigo-700 drop-shadow">Dvergplaneter i solsystemet</h2>
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-8">
+        {dwarfPlanets.map((planet, idx) => (
+          <div
+            key={planet.name}
+            className="bg-white/80 rounded-xl shadow-lg p-4 sm:p-6 flex flex-col items-center cursor-pointer hover:scale-105 transition"
+            tabIndex={0}
+            aria-label={`Detaljer for dvergplaneten ${planet.name}`}
+          >
+            <img
+              src={planet.img}
+              alt={planet.name}
+              className="mb-2 sm:mb-4 rounded object-scale-down max-w-full max-h-40 sm:max-h-60"
+              draggable={false}
+            />
+            <h2 className="text-lg sm:text-2xl font-semibold mb-1 sm:mb-2 text-gray-800 text-center">
+              {planet.name}
+            </h2>
+            {planet.facts.map((fact, i) => (
+              <p className="text-gray-700 mb-1 sm:mb-2 text-center" key={i}>
+                {fact}
+              </p>
+            ))}
+            <p className="text-gray-700 text-xs sm:text-sm text-center">Kilde: NASA, Wikipedia</p>
+          </div>
+        ))}
+      </div>
 
       {/* NASA Fun Fact */}
       <div className="mt-12 mb-4 flex flex-col items-center">

@@ -1,31 +1,38 @@
 "use client";
-import { useRef, useEffect, useState } from "react";
+import { useRef, useEffect } from "react";
+
+const sounds = [
+  "/sound/LOTR.mp3",
+  "/sound/Ringing.mp3",
+  "/sound/among.mp3",
+  "/sound/fart.mp3",
+  "/sound/fugl.mp3",
+  "/sound/get-out-meme.mp3",
+  "/sound/mario.mp3",
+  "/sound/pew.mp3",
+  "/sound/quack_5.mp3",
+];
 
 export default function BackgroundMusic() {
   const audioRef = useRef(null);
-  const [started, setStarted] = useState(false);
 
   useEffect(() => {
-    function start() {
-      if (!started && audioRef.current) {
+    function playRandomSound() {
+      if (audioRef.current) {
+        // Velg tilfeldig lyd
+        const src = sounds[Math.floor(Math.random() * sounds.length)];
+        audioRef.current.src = src;
+        audioRef.current.currentTime = 0;
         audioRef.current.play();
-        setStarted(true);
       }
     }
-    window.addEventListener("pointerdown", start, { once: true });
-    window.addEventListener("keydown", start, { once: true });
+    window.addEventListener("pointerdown", playRandomSound);
+    window.addEventListener("keydown", playRandomSound);
     return () => {
-      window.removeEventListener("pointerdown", start);
-      window.removeEventListener("keydown", start);
+      window.removeEventListener("pointerdown", playRandomSound);
+      window.removeEventListener("keydown", playRandomSound);
     };
-  }, [started]);
+  }, []);
 
-  return (
-    <audio
-      ref={audioRef}
-      src="/remix.mp3"
-      loop
-      style={{ display: "none" }}
-    />
-  );
+  return <audio ref={audioRef} style={{ display: "none" }} />;
 }
