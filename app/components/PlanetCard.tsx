@@ -35,15 +35,15 @@ const PlanetCard: React.FC<PlanetCardProps> = ({
       height={160}
       priority={false}
     />
-    <h2 className="text-lg sm:text-2xl font-semibold mb-1 sm:mb-2 text-gray-800 text-center">
+    <h2 className="text-lg sm:text-2xl font-semibold mb-1 sm:mb-2 text-white text-center">
       {name}
     </h2>
     {facts.map((fact, i) => (
-      <p className="text-gray-700 mb-1 sm:mb-2 text-center" key={i}>
+      <p className="text-white mb-1 sm:mb-2 text-center" key={i}>
         {fact}
       </p>
     ))}
-    <p className="text-gray-700 text-xs sm:text-sm text-center">{source}</p>
+    <p className="text-white text-xs sm:text-sm text-center">{source}</p>
   </div>
 );
 
