@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from 'react';
+import PlanetCard from '../components/PlanetCard';
 
 export default function PlanetsContent() {
   // Planetdata som array
@@ -219,29 +220,15 @@ export default function PlanetsContent() {
       </div>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-8">
         {planets.map((planet, idx) => (
-          <div
+          <PlanetCard
             key={planet.name}
-            className="bg-white/80 rounded-xl shadow-lg p-4 sm:p-6 flex flex-col items-center cursor-pointer hover:scale-105 transition"
+            name={planet.name}
+            img={planet.img}
+            facts={planet.facts}
             onClick={() => openModal(idx)}
             tabIndex={0}
-            aria-label={`Åpne detaljer for ${planet.name}`}
-          >
-            <img
-              src={planet.img}
-              alt={planet.name}
-              className="mb-2 sm:mb-4 rounded object-scale-down max-w-full max-h-40 sm:max-h-60"
-              draggable={false}
-            />
-            <h2 className="text-lg sm:text-2xl font-semibold mb-1 sm:mb-2 text-gray-800 text-center">
-              {planet.name}
-            </h2>
-            {planet.facts.map((fact, i) => (
-              <p className="text-gray-700 mb-1 sm:mb-2 text-center" key={i}>
-                {fact}
-              </p>
-            ))}
-            <p className="text-gray-700 text-xs sm:text-sm text-center">Kilde: NASA</p>
-          </div>
+            ariaLabel={`Åpne detaljer for ${planet.name}`}
+          />
         ))}
       </div>
 
@@ -262,20 +249,12 @@ export default function PlanetsContent() {
             >
               &times;
             </button>
-            <img
-              src={planets[currentIdx].img}
-              alt={planets[currentIdx].name}
-              className="mb-2 sm:mb-4 rounded object-scale-down max-w-full max-h-40 sm:max-h-60"
-              draggable={false}
+            <PlanetCard
+              name={planets[currentIdx].name}
+              img={planets[currentIdx].img}
+              facts={planets[currentIdx].facts}
+              source="Kilde: NASA"
             />
-            <h2 className="text-lg sm:text-2xl font-semibold mb-1 sm:mb-2 text-gray-800 text-center">
-              {planets[currentIdx].name}
-            </h2>
-            {planets[currentIdx].facts.map((fact, i) => (
-              <p className="text-gray-700 mb-1 sm:mb-2 text-center" key={i}>
-                {fact}
-              </p>
-            ))}
             <div className="flex gap-4 sm:gap-6 mt-2 sm:mt-4">
               <button
                 className="px-2 sm:px-4 py-1 sm:py-2 bg-indigo-600 text-white rounded hover:bg-indigo-700 transition text-xs sm:text-base"
@@ -299,29 +278,16 @@ export default function PlanetsContent() {
       {/* Dvergplaneter */}
       <h2 className="text-xl sm:text-2xl font-bold mt-12 mb-4 text-center text-indigo-700 drop-shadow">Dvergplaneter i solsystemet</h2>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-8">
-        {dwarfPlanets.map((planet, idx) => (
-          <div
+        {dwarfPlanets.map((planet) => (
+          <PlanetCard
             key={planet.name}
-            className="bg-white/80 rounded-xl shadow-lg p-4 sm:p-6 flex flex-col items-center cursor-pointer hover:scale-105 transition"
+            name={planet.name}
+            img={planet.img}
+            facts={planet.facts}
+            source="Kilde: NASA, Wikipedia"
             tabIndex={0}
-            aria-label={`Detaljer for dvergplaneten ${planet.name}`}
-          >
-            <img
-              src={planet.img}
-              alt={planet.name}
-              className="mb-2 sm:mb-4 rounded object-scale-down max-w-full max-h-40 sm:max-h-60"
-              draggable={false}
-            />
-            <h2 className="text-lg sm:text-2xl font-semibold mb-1 sm:mb-2 text-gray-800 text-center">
-              {planet.name}
-            </h2>
-            {planet.facts.map((fact, i) => (
-              <p className="text-gray-700 mb-1 sm:mb-2 text-center" key={i}>
-                {fact}
-              </p>
-            ))}
-            <p className="text-gray-700 text-xs sm:text-sm text-center">Kilde: NASA, Wikipedia</p>
-          </div>
+            ariaLabel={`Detaljer for dvergplaneten ${planet.name}`}
+          />
         ))}
       </div>
 
