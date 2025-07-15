@@ -1,3 +1,5 @@
+"use client";
+
 import React, { useState } from "react";
 
 const adultQuiz = [
@@ -160,14 +162,19 @@ export default function QuizContent() {
         <button onClick={() => setQuizType("kids")}
           className={`px-4 py-2 rounded font-bold ${quizType === "kids" ? "bg-yellow-500 text-white" : "bg-gray-200 text-yellow-700"}`}>Barn</button>
       </div>
-      <div className="bg-white/90 rounded-xl shadow-lg p-6 border border-blue-200 mb-4">
-        <h2 className="text-xl font-bold mb-4">{current.question}</h2>
+      <div className="bg-white/80 rounded-xl shadow-lg p-6 border border-yellow-200 mb-4">
+        <h2 className="text-xl font-bold mb-4 text-yellow-800">{current.question}</h2>
         {current.options.length > 0 ? (
           <div className="flex flex-col gap-2 mb-4">
             {current.options.map((opt, idx) => (
               <button
                 key={idx}
-                className={`px-4 py-2 rounded border text-left ${selected === idx ? (idx === current.answer ? "bg-green-200 border-green-600" : "bg-red-200 border-red-600") : "bg-gray-100 border-gray-300 hover:bg-blue-100"}`}
+                className={`px-4 py-2 rounded border text-left transition-all duration-150
+                  ${selected === idx
+                    ? (idx === current.answer
+                        ? "bg-green-200 border-green-600 text-green-900"
+                        : "bg-red-200 border-red-600 text-red-900")
+                    : "bg-yellow-50 border-yellow-300 hover:bg-yellow-100 text-yellow-900"}`}
                 disabled={showAnswer}
                 onClick={() => handleOption(idx)}
               >
@@ -177,14 +184,14 @@ export default function QuizContent() {
           </div>
         ) : null}
         {showAnswer || current.options.length === 0 ? (
-          <div className="mt-2 p-3 rounded bg-blue-50 border border-blue-200 text-blue-900">
+          <div className="mt-2 p-3 rounded bg-yellow-100 border border-yellow-300 text-yellow-900">
             <b>Fasit:</b> {current.options.length > 0 && current.answer !== null ? `${String.fromCharCode(65 + current.answer)}) ${current.options[current.answer]}` : current.explanation}
             <br />
             <span className="text-sm">{current.explanation}</span>
           </div>
         ) : null}
         <button
-          className="mt-6 px-4 py-2 bg-blue-700 text-white rounded hover:bg-blue-800 transition"
+          className="mt-6 px-4 py-2 bg-yellow-600 text-white rounded hover:bg-yellow-700 transition"
           onClick={next}
         >
           Neste spørsmål
