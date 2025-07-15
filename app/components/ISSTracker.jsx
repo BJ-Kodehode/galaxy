@@ -40,12 +40,13 @@ export default function ISSTracker() {
         <div className="w-full flex flex-col items-center">
           <iframe
             title="ISS Live Map"
-            src={`https://iss-now.herokuapp.com/iss-map.html?lat=${issData.latitude}&lon=${issData.longitude}`}
+            src="https://www.n2yo.com/iframe/?s=25544&w=600&h=320&lang=en"
             width="100%"
             height="320"
             className="rounded shadow mb-4 border border-blue-300"
             style={{ minWidth: 280, maxWidth: 600 }}
             loading="lazy"
+            allowFullScreen
           ></iframe>
           <div className="text-sm text-gray-800 mb-2">
             <b>Latitude:</b> {issData.latitude.toFixed(2)}<br />
@@ -53,7 +54,7 @@ export default function ISSTracker() {
             <b>Høyde over bakken:</b> {issData.altitude.toFixed(0)} km<br />
             <b>Fart:</b> {issData.velocity.toFixed(0)} km/t
           </div>
-          <span className="text-xs text-gray-500">Kilde: wheretheiss.at API</span>
+          <span className="text-xs text-gray-500">Kart: n2yo.com | Data: wheretheiss.at API</span>
         </div>
       ) : null}
     </section>

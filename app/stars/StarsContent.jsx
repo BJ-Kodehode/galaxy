@@ -3,7 +3,6 @@
 
 
 import StarList from '../components/StarList';
-import ISSTracker from '../components/ISSTracker';
 import { useSearchParams } from 'next/navigation';
 import { useEffect, useState } from 'react';
 
@@ -60,8 +59,7 @@ export default function StarsContent() {
         <p className="italic text-base text-gray-600">Kilde: NASA, Store norske leksikon</p>
       </div>
 
-      {/* ISS Live Tracker */}
-      <ISSTracker />
+
 
       {/* NASA Fun Fact */}
       <div className="mt-12 mb-4 flex flex-col items-center">
