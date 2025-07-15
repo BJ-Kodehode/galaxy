@@ -47,6 +47,7 @@ export default function Header() {
           <Link href="/info" className="hover:text-blue-400 transition text-base sm:text-lg">Info</Link>
           <Link href="/planets" className="hover:text-blue-400 transition text-base sm:text-lg">Utforsk planeter</Link>
           <Link href="/stars" className="hover:text-blue-400 transition text-base sm:text-lg">Utforsk stjerner</Link>
+          <Link href="/quiz" className="hover:text-yellow-400 transition text-base sm:text-lg font-bold">Quiz</Link>
         </div>
         {/* Mobil meny */}
         {open && (
@@ -55,6 +56,7 @@ export default function Header() {
             <Link href="/info" className="hover:text-blue-400 transition text-base" onClick={() => setOpen(false)}>Info</Link>
             <Link href="/planets" className="hover:text-blue-400 transition text-base" onClick={() => setOpen(false)}>Utforsk planeter</Link>
             <Link href="/stars" className="hover:text-blue-400 transition text-base" onClick={() => setOpen(false)}>Utforsk stjerner</Link>
+            <Link href="/quiz" className="hover:text-yellow-400 transition text-base font-bold" onClick={() => setOpen(false)}>Quiz</Link>
           </div>
         )}
       </nav>
