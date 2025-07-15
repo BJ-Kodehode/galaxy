@@ -11,7 +11,6 @@ Galaxy Explorer er en moderne, responsiv Next.js-applikasjon som lar deg utforsk
 - **Universell bakgrunn:** Animerte stjerner og kosmisk gradient gir en stemningsfull opplevelse.
 - **Hamburgermeny:** Mobilvennlig navigasjon med animert X-ikon.
 - **NASA Fun Fact:** Henter daglige eller tilfeldige fakta fra NASA APOD API og viser dem på planetside og stjerneside.
-- **Bakgrunnsmusikk:** Spiller av remix.mp3 fra public-mappen automatisk etter første brukerinteraksjon.
 
 ## Teknologi
 - **Next.js 15** (App Router)

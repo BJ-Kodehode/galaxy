@@ -9,9 +9,7 @@ export default function Home() {
           Velkommen til Melkeveien Explorer
         </h1>
         <p className="text-base sm:text-lg max-w-full sm:max-w-2xl mx-auto mb-6 sm:mb-8 text-center px-2">
-          Dette er en side om Melkeveien og dens stjerner og planeter. Utforsk
-          galaksen vår, søk og filtrer blant planeter og stjerner, og se flotte
-          bilder fra NASA sitt arkiv.
+          Siden om planter og stjerner. Utforsk deler av Melkeveien med oss!
         </p>
         <div className="w-full flex justify-center mb-4 sm:mb-6 px-1">
           <video
