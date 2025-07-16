@@ -13,26 +13,41 @@ const sounds = [
   "/sound/quack_5.mp3",
 ];
 
-export default function BackgroundMusic() {
+export default function BackgroundMusic({ play, onSoundChange, onSoundEnd }) {
   const audioRef = useRef(null);
-
   useEffect(() => {
-    function playRandomSound() {
+    if (!play) {
       if (audioRef.current) {
-        // Velg tilfeldig lyd
-        const src = sounds[Math.floor(Math.random() * sounds.length)];
+        audioRef.current.pause();
+        audioRef.current.src = "";
+      }
+      return;
+    }
+    function playMemeSound() {
+      const src = sounds[Math.floor(Math.random() * sounds.length)];
+      if (audioRef.current) {
         audioRef.current.src = src;
         audioRef.current.currentTime = 0;
         audioRef.current.play();
+        if (typeof onSoundChange === 'function') onSoundChange(src);
+        audioRef.current.onended = () => {
+          if (typeof onSoundEnd === 'function') onSoundEnd();
+        };
       }
+      // Fjern lyttere etter første interaksjon
+      window.removeEventListener('pointerdown', playMemeSound);
+      window.removeEventListener('keydown', playMemeSound);
     }
-    window.addEventListener("pointerdown", playRandomSound);
-    window.addEventListener("keydown", playRandomSound);
+    window.addEventListener('pointerdown', playMemeSound);
+    window.addEventListener('keydown', playMemeSound);
     return () => {
-      window.removeEventListener("pointerdown", playRandomSound);
-      window.removeEventListener("keydown", playRandomSound);
+      window.removeEventListener('pointerdown', playMemeSound);
+      window.removeEventListener('keydown', playMemeSound);
+      if (audioRef.current) {
+        audioRef.current.pause();
+        audioRef.current.src = "";
+      }
     };
-  }, []);
-
+  }, [play]);
   return <audio ref={audioRef} style={{ display: "none" }} />;
 }
