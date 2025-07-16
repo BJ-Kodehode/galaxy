@@ -32,7 +32,7 @@ export default function Home() {
           Velkommen til Melkeveien Explorer
         </h1>
         <p className="text-base sm:text-lg max-w-full sm:max-w-2xl mx-auto mb-6 sm:mb-8 text-center px-2">
-          Siden om planeter og stjerner. Utforsk Melkeveien med oss!
+          Utforsk universets mysterier! Her finner du fakta, bilder og quiz om planeter, stjerner og galakser – med dagens bilde fra NASA.
         </p>
         <div className="w-full flex flex-col items-center mb-4 sm:mb-6 px-1">
           {loading ? (
