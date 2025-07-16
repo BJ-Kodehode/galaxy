@@ -8,7 +8,7 @@ export default function PlanetsContent() {
   const planets = [
     {
       name: "Merkur",
-      img: "/Merkur.jpg",
+      img: "/Planeter/Merkur.jpg",
       facts: [
         "Nærmeste planet til Sola og den minste i solsystemet. Overflaten er dekket av kratre, og temperaturen varierer fra -180°C til 430°C.",
         "Diameter: 4 880 km",
@@ -19,7 +19,7 @@ export default function PlanetsContent() {
     },
     {
       name: "Venus",
-      img: "/Venus.jpg",
+      img: "/Planeter/Venus.jpg",
       facts: [
         "Den nest nærmeste planeten til Sola og omtrent like stor som Jorden. Kjent for sin tette, giftige atmosfære og ekstreme overflatetemperaturer.",
         "Diameter: 12 104 km",
@@ -30,7 +30,7 @@ export default function PlanetsContent() {
     },
     {
       name: "Jorden",
-      img: "/Jorden.jpg",
+      img: "/Planeter/Jorden.jpg",
       facts: [
         "Den eneste planeten vi vet har liv. Har en atmosfære som beskytter mot stråling og gir stabile temperaturer.",
         "Diameter: 12 742 km",
@@ -41,7 +41,7 @@ export default function PlanetsContent() {
     },
     {
       name: "Mars",
-      img: "/Mars.jpg",
+      img: "/Planeter/Mars.jpg",
       facts: [
         "Kjent som den røde planeten. Har iskalde ørkener, tynn atmosfære og spor av tidligere vann.",
         "Diameter: 6 779 km",
@@ -52,7 +52,7 @@ export default function PlanetsContent() {
     },
     {
       name: "Jupiter",
-      img: "/Jupiter.jpg",
+      img: "/Planeter/Jupiter.jpg",
       facts: [
         "Den største planeten i solsystemet. Kjent for sine fargerike skyer og den store røde flekken, en gigantisk storm.",
         "Diameter: 139 820 km",
@@ -63,7 +63,7 @@ export default function PlanetsContent() {
     },
     {
       name: "Saturn",
-      img: "/Saturn.jpg",
+      img: "/Planeter/Saturn.jpg",
       facts: [
         "Berømt for sitt spektakulære ringsystem. Har mange måner, inkludert Titan med tykk atmosfære.",
         "Diameter: 116 460 km",
@@ -74,7 +74,7 @@ export default function PlanetsContent() {
     },
     {
       name: "Uranus",
-      img: "/Uranus.jpg",
+      img: "/Planeter/Uranus.jpg",
       facts: [
         "En iskjempe med blågrønn farge på grunn av metan i atmosfæren. Roterer 'liggende' på siden.",
         "Diameter: 50 724 km",
@@ -85,7 +85,7 @@ export default function PlanetsContent() {
     },
     {
       name: "Neptun",
-      img: "/Neptun.jpg",
+      img: "/Planeter/Neptun.jpg",
       facts: [
         "Den ytterste planeten i solsystemet. Kjent for sine sterke vinder og dype blåfarge.",
         "Diameter: 49 244 km",
@@ -100,7 +100,7 @@ export default function PlanetsContent() {
   const dwarfPlanets = [
     {
       name: "Pluto",
-      img: "/Pluto.jpg",
+      img: "/Planeter/Pluto.jpg",
       facts: [
         "Pluto var tidligere regnet som den niende planeten, men er nå klassifisert som en dvergplanet.",
         "Diameter: 2 377 km",
@@ -111,7 +111,7 @@ export default function PlanetsContent() {
     },
     {
       name: "Eris",
-      img: "/Eris.jpg",
+      img: "/Planeter/Eris.jpg",
       facts: [
         "Eris er den mest massive kjente dvergplaneten i solsystemet og er litt mindre enn Pluto.",
         "Diameter: 2 326 km",
@@ -122,7 +122,7 @@ export default function PlanetsContent() {
     },
     {
       name: "Haumea",
-      img: "/Haumea.jpg",
+      img: "/Planeter/Haumea.jpg",
       facts: [
         "Haumea har en avlang form og roterer svært raskt.",
         "Diameter: ca. 1 632 × 996 km",
@@ -133,7 +133,7 @@ export default function PlanetsContent() {
     },
     {
       name: "Makemake",
-      img: "/Makemake.jpg",
+      img: "/Planeter/Makemake.jpg",
       facts: [
         "Makemake er en lys og isrik dvergplanet i Kuiperbeltet.",
         "Diameter: ca. 1 430 km",
@@ -144,7 +144,7 @@ export default function PlanetsContent() {
     },
     {
       name: "Ceres",
-      img: "/Ceres.jpg",
+      img: "/Planeter/Ceres.jpg",
       facts: [
         "Ceres er den største asteroiden i asteroidebeltet og den eneste dvergplaneten i den indre delen av solsystemet.",
         "Diameter: 940 km",
