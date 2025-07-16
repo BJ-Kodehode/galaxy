@@ -11,11 +11,21 @@ export default function Home() {
     async function fetchApod() {
       setLoading(true);
       setError(null);
+      const today = new Date().toISOString().slice(0, 10);
+      const cached = localStorage.getItem('apod-data');
+      const cachedDate = localStorage.getItem('apod-date');
+      if (cached && cachedDate === today) {
+        setApod(JSON.parse(cached));
+        setLoading(false);
+        return;
+      }
       try {
         const res = await fetch("https://api.nasa.gov/planetary/apod?api_key=DEMO_KEY");
         if (!res.ok) throw new Error("API-feil");
         const data = await res.json();
         setApod(data);
+        localStorage.setItem('apod-data', JSON.stringify(data));
+        localStorage.setItem('apod-date', today);
       } catch (e) {
         setError("Kunne ikke hente dagens bilde fra NASA.");
       } finally {
