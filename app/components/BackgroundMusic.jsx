@@ -23,7 +23,10 @@ export default function BackgroundMusic({ play, onSoundChange, onSoundEnd }) {
       }
       return;
     }
-    function playMemeSound() {
+    function playMemeSound(e) {
+      if (!play) return;
+      // Kun venstre museknapp
+      if (e && e.type === 'pointerdown' && e.button !== 0) return;
       const src = sounds[Math.floor(Math.random() * sounds.length)];
       if (audioRef.current) {
         audioRef.current.src = src;
@@ -34,9 +37,6 @@ export default function BackgroundMusic({ play, onSoundChange, onSoundEnd }) {
           if (typeof onSoundEnd === 'function') onSoundEnd();
         };
       }
-      // Fjern lyttere etter første interaksjon
-      window.removeEventListener('pointerdown', playMemeSound);
-      window.removeEventListener('keydown', playMemeSound);
     }
     window.addEventListener('pointerdown', playMemeSound);
     window.addEventListener('keydown', playMemeSound);
