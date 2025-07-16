@@ -1,54 +1,71 @@
-import Image from "next/image";
+
+"use client";
+import { useEffect, useState } from "react";
 
 export default function Home() {
+  const [apod, setApod] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    async function fetchApod() {
+      setLoading(true);
+      setError(null);
+      try {
+        const res = await fetch("https://api.nasa.gov/planetary/apod?api_key=DEMO_KEY");
+        if (!res.ok) throw new Error("API-feil");
+        const data = await res.json();
+        setApod(data);
+      } catch (e) {
+        setError("Kunne ikke hente dagens bilde fra NASA.");
+      } finally {
+        setLoading(false);
+      }
+    }
+    fetchApod();
+  }, []);
+
   return (
     <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-4 pb-16 gap-8 sm:p-10 font-[family-name:var(--font-geist-sans)]">
       <main className="flex flex-col gap-8 row-start-2 items-center w-full max-w-3xl mx-auto">
-       
         <h1 className="text-2xl sm:text-4xl font-bold mb-4 sm:mb-6 text-center">
           Velkommen til Melkeveien Explorer
         </h1>
         <p className="text-base sm:text-lg max-w-full sm:max-w-2xl mx-auto mb-6 sm:mb-8 text-center px-2">
-          Siden om planter og stjerner. Utforsk deler av Melkeveien med oss!
+          Siden om planeter og stjerner. Utforsk Melkeveien med oss!
         </p>
-        <div className="w-full flex justify-center mb-4 sm:mb-6 px-1">
-          <video
-            className="galaxy-video-fade rounded-lg shadow-lg"
-            src="https://cdn.pixabay.com/video/2018/09/30/18492-292594998_large.mp4"
-            width="720"
-            height="280"
-            style={{ maxWidth: '100%', height: 'auto', objectFit: 'cover' }}
-            autoPlay
-            loop
-            muted
-            playsInline
-          />
-        </div>
-        <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center w-full">
-          <a
-            href="/planets"
-            className="bg-blue-600 text-white px-6 py-3 rounded shadow hover:bg-blue-700 transition"
-          >
-            Utforsk Planeter
-          </a>
-          <a
-            href="/stars"
-            className="bg-yellow-500 text-white px-6 py-3 rounded shadow hover:bg-yellow-600 transition"
-          >
-            Utforsk Stjerner
-          </a>
-          <a
-            href="/gallery"
-            className="bg-gray-800 text-white px-6 py-3 rounded shadow hover:bg-gray-900 transition"
-          >
-            Galleri
-          </a>
+        <div className="w-full flex flex-col items-center mb-4 sm:mb-6 px-1">
+          {loading ? (
+            <p className="text-gray-600">Laster dagens bilde fra NASA ...</p>
+          ) : error ? (
+            <p className="text-red-600">{error}</p>
+          ) : apod ? (
+            <>
+              {apod.media_type === "image" ? (
+                <img
+                  src={apod.url}
+                  alt={apod.title}
+                  className="rounded-lg shadow-lg w-full max-w-xl mb-2"
+                  style={{ objectFit: "cover" }}
+                />
+              ) : (
+                <iframe
+                  src={apod.url}
+                  title={apod.title}
+                  className="rounded-lg shadow-lg w-full max-w-xl mb-2"
+                  style={{ minHeight: 320, height: 320 }}
+                  allowFullScreen
+                />
+              )}
+              <h2 className="text-lg font-bold text-blue-700 mb-2 text-center">{apod.title}</h2>
+              <p className="text-base text-white text-center mb-2">{apod.explanation}</p>
+              <span className="text-xs text-gray-500">Kilde: NASA APOD</span>
+            </>
+          ) : null}
         </div>
       </main>
       <footer className="row-start-3 flex gap-4 flex-wrap items-center justify-center text-xs sm:text-sm px-2">
-        <span className="text-sm text-gray-500">
-          
-        </span>
+        <span className="text-sm text-gray-500"></span>
       </footer>
     </div>
   );
