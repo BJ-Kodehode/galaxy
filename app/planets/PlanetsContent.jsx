@@ -292,7 +292,7 @@ export default function PlanetsContent() {
       </div>
 
       {/* NASA Fun Fact */}
-      <div className="mt-12 mb-4 flex flex-col items-center">
+      <div className="mt-12 mb-4 flex flex-col items-center min-h-[800px]">
         <h2 className="text-lg sm:text-xl font-bold text-indigo-700 mb-2">NASA Fun Fact</h2>
         {loadingFact ? (
           <p className="text-gray-600">Laster ...</p>
@@ -300,9 +300,9 @@ export default function PlanetsContent() {
           <p className="text-red-600">{factError}</p>
         ) : funFact ? (
           <div className="max-w-xl text-center">
-            <p className="text-gray-800 mb-2 font-semibold">{funFact.title}</p>
-            <p className="text-red-600 text-sm mb-2">{funFact.explanation}</p>
-            <span className="text-xs text-gray-500">Kilde: NASA APOD</span>
+            <p className="text-gray-800 mb-2 font-semibold text-xl sm:text-2xl">{funFact.title}</p>
+            <p className="text-red-600 text-base sm:text-lg mb-2">{funFact.explanation}</p>
+            <span className="text-sm text-gray-500">Kilde: NASA APOD</span>
           </div>
         ) : null}
         <button
