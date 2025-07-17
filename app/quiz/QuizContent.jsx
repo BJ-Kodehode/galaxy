@@ -35,15 +35,20 @@ const adultQuiz = [
   },
   {
     question: "Hvilken planet kalles 'jordens tvilling' på grunn av størrelse og sammensetning?",
-    options: ["Venus", "Mars", "Jorden", "Saturn"],
+    options: ["Venus", "Mars", "Merkur", "Neptun"],
     answer: 0,
     explanation: "Venus kalles jordens tvilling."
   },
   {
     question: "Hva er hovedforskjellen mellom en stjerne og en planet?",
-    options: ["Stjerner produserer sitt eget lys, planeter gjør ikke det.", "Planeter er alltid større enn stjerner.", "Stjerner har ringer, planeter har ikke det.", "Planeter lyser sterkere enn stjerner."],
+    options: [
+      "Stjerner produserer sitt eget lys, planeter reflekterer lys.",
+      "Planeter er alltid større enn stjerner.",
+      "Stjerner har ringer, planeter har ikke det.",
+      "Planeter lyser sterkere enn stjerner."
+    ],
     answer: 0,
-    explanation: "Stjerner produserer sitt eget lys gjennom fusjon, planeter gjør ikke det."
+    explanation: "Stjerner produserer sitt eget lys gjennom fusjon, planeter reflekterer bare lys."
   },
   {
     question: "Hva er navnet på den nest nærmeste stjernen til jorden etter solen?",
@@ -59,7 +64,7 @@ const adultQuiz = [
   },
   {
     question: "Hva slags galakse er Melkeveien klassifisert som?",
-    options: ["Elliptisk", "Irregulær", "Spiral", "Ringgalakse"],
+    options: ["Elliptisk galakse", "Irregulær galakse", "Spiralgalakse", "Ringgalakse"],
     answer: 2,
     explanation: "Melkeveien er en spiralgalakse."
   }
