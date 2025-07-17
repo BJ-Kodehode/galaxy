@@ -301,7 +301,7 @@ export default function PlanetsContent() {
         ) : funFact ? (
           <div className="max-w-xl text-center">
             <p className="text-gray-800 mb-2 font-semibold text-xl sm:text-2xl">{funFact.title}</p>
-            <p className="text-red-600 text-base sm:text-lg mb-2">{funFact.explanation}</p>
+            <p className="text-white text-base sm:text-lg mb-2">{funFact.explanation}</p>
             <span className="text-sm text-gray-500">Kilde: NASA APOD</span>
           </div>
         ) : null}
