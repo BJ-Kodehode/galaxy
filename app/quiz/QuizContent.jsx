@@ -132,6 +132,8 @@ export default function QuizContent() {
   const [step, setStep] = useState(0);
   const [selected, setSelected] = useState(null);
   const [showAnswer, setShowAnswer] = useState(false);
+  const [score, setScore] = useState(0);
+  const [finished, setFinished] = useState(false);
 
   const quiz = quizType === "adult" ? adultQuiz : kidsQuiz;
   const current = quiz[step];
@@ -139,64 +141,95 @@ export default function QuizContent() {
   function handleOption(idx) {
     setSelected(idx);
     setShowAnswer(true);
+    if (idx === current.answer) {
+      setScore((s) => s + 1);
+    }
   }
 
   function next() {
-    setStep((s) => (s + 1 < quiz.length ? s + 1 : 0));
+    if (step + 1 < quiz.length) {
+      setStep((s) => s + 1);
+      setSelected(null);
+      setShowAnswer(false);
+    } else {
+      setFinished(true);
+    }
+  }
+
+  function restart() {
+    setStep(0);
     setSelected(null);
     setShowAnswer(false);
+    setScore(0);
+    setFinished(false);
   }
 
   return (
     <main className="container mx-auto py-8 px-2 max-w-2xl">
       <h1 className="text-3xl font-extrabold text-center mb-6 text-blue-700 drop-shadow">Quiz: Utforsk Melkeveien</h1>
       <div className="flex justify-center gap-4 mb-8">
-        <button onClick={() => setQuizType("adult")}
+        <button onClick={() => { setQuizType("adult"); restart(); }}
           className={`px-4 py-2 rounded font-bold ${quizType === "adult" ? "bg-blue-700 text-white" : "bg-gray-200 text-blue-700"}`}>Voksne</button>
-        <button onClick={() => setQuizType("kids")}
+        <button onClick={() => { setQuizType("kids"); restart(); }}
           className={`px-4 py-2 rounded font-bold ${quizType === "kids" ? "bg-yellow-500 text-white" : "bg-gray-200 text-yellow-700"}`}>Barn</button>
       </div>
       <div className="bg-white/80 rounded-xl shadow-lg p-6 border border-yellow-200 mb-4">
-        <h2 className="text-xl font-bold mb-4 text-yellow-800">{current.question}</h2>
-        {current.options.length > 0 && (
-          <div className="flex flex-col gap-2 mb-4">
-            {current.options.map((opt, idx) => (
-              <button
-                key={idx}
-                className={`px-4 py-2 rounded border text-left transition-all duration-150
-                  ${selected === idx && showAnswer
-                    ? (idx === current.answer
-                        ? "bg-green-200 border-green-600 text-green-900"
-                        : "bg-red-200 border-red-600 text-red-900")
-                    : "bg-yellow-50 border-yellow-300 hover:bg-yellow-100 text-yellow-900"}`}
-                disabled={showAnswer}
-                onClick={() => handleOption(idx)}
-              >
-                {String.fromCharCode(65 + idx)}) {opt}
-              </button>
-            ))}
+        {finished ? (
+          <div className="text-center">
+            <h2 className="text-2xl font-bold mb-4 text-green-700">Quiz ferdig!</h2>
+            <p className="text-lg mb-4">Du fikk <b>{score}</b> av {quiz.length} riktige.</p>
+            <button
+              className="px-4 py-2 bg-yellow-600 text-white rounded hover:bg-yellow-700 transition"
+              onClick={restart}
+            >
+              Prøv igjen
+            </button>
           </div>
-        )}
-        {showAnswer && (
-          <div className="mt-2 p-3 rounded bg-yellow-100 border border-yellow-300 text-yellow-900">
-            <b>Fasit:</b> {current.options.length > 0 && current.answer !== null ? `${String.fromCharCode(65 + current.answer)}) ${current.options[current.answer]}` : current.explanation}
-            <br />
-            <span className="text-sm">{current.explanation}</span>
-            {/* Ekstra info fra NASA APOD hvis tilgjengelig */}
-            {quizType === "adult" && window && window.funFactFromStarsPage && (
-              <>
-                <hr className="my-2" />
-                <span className="text-xs text-gray-700 block"><b>NASA APOD:</b> {window.funFactFromStarsPage.title}<br />{window.funFactFromStarsPage.explanation}</span>
-              </>
+        ) : (
+          <>
+            <h2 className="text-xl font-bold mb-4 text-yellow-800">{current.question}</h2>
+            {current.options.length > 0 && (
+              <div className="flex flex-col gap-2 mb-4">
+                {current.options.map((opt, idx) => (
+                  <button
+                    key={idx}
+                    className={`px-4 py-2 rounded border text-left transition-all duration-150
+                      ${selected === idx && showAnswer
+                        ? (idx === current.answer
+                            ? "bg-green-200 border-green-600 text-green-900"
+                            : "bg-red-200 border-red-600 text-red-900")
+                        : "bg-yellow-50 border-yellow-300 hover:bg-yellow-100 text-yellow-900"}`}
+                    disabled={showAnswer}
+                    onClick={() => handleOption(idx)}
+                  >
+                    {String.fromCharCode(65 + idx)}) {opt}
+                  </button>
+                ))}
+              </div>
             )}
-          </div>
+            {showAnswer && (
+              <div className="mt-2 p-3 rounded bg-yellow-100 border border-yellow-300 text-yellow-900">
+                <b>Fasit:</b> {current.options.length > 0 && current.answer !== null ? `${String.fromCharCode(65 + current.answer)}) ${current.options[current.answer]}` : current.explanation}
+                <br />
+                <span className="text-sm">{current.explanation}</span>
+                {/* Ekstra info fra NASA APOD hvis tilgjengelig */}
+                {quizType === "adult" && window && window.funFactFromStarsPage && (
+                  <>
+                    <hr className="my-2" />
+                    <span className="text-xs text-gray-700 block"><b>NASA APOD:</b> {window.funFactFromStarsPage.title}<br />{window.funFactFromStarsPage.explanation}</span>
+                  </>
+                )}
+              </div>
+            )}
+            <button
+              className="mt-6 px-4 py-2 bg-yellow-600 text-white rounded hover:bg-yellow-700 transition"
+              onClick={next}
+              disabled={selected === null}
+            >
+              {step + 1 === quiz.length ? 'Fullfør quiz' : 'Neste spørsmål'}
+            </button>
+          </>
         )}
-        <button
-          className="mt-6 px-4 py-2 bg-yellow-600 text-white rounded hover:bg-yellow-700 transition"
-          onClick={next}
-        >
-          Neste spørsmål
-        </button>
       </div>
     </main>
   );
