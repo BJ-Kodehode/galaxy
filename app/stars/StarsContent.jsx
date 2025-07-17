@@ -71,7 +71,7 @@ export default function StarsContent() {
         ) : funFact ? (
           <div className="max-w-xl text-center">
             <p className="text-gray-800 mb-2 font-semibold text-xl sm:text-2xl">{funFact.title}</p>
-            <p className="text-red-600 text-base sm:text-lg mb-2">{funFact.explanation}</p>
+            <p className="text-gray-700 text-base sm:text-lg mb-2">{funFact.explanation}</p>
             <span className="text-sm text-gray-500">Kilde: NASA APOD</span>
           </div>
         ) : null}
@@ -80,7 +80,7 @@ export default function StarsContent() {
           onClick={() => fetchFunFact(getRandomDate())}
           disabled={loadingFact}
         >
-          {loadingFact ? 'Laster...' : 'Ny fun fact'}
+          {loadingFact ? 'Laster...' : 'Vis en ny fun fact fra NASA'}
         </button>
       </div>
     </main>

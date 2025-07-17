@@ -177,6 +177,20 @@ export default function QuizContent() {
             ))}
           </div>
         )}
+        {showAnswer && (
+          <div className="mt-2 p-3 rounded bg-yellow-100 border border-yellow-300 text-yellow-900">
+            <b>Fasit:</b> {current.options.length > 0 && current.answer !== null ? `${String.fromCharCode(65 + current.answer)}) ${current.options[current.answer]}` : current.explanation}
+            <br />
+            <span className="text-sm">{current.explanation}</span>
+            {/* Ekstra info fra NASA APOD hvis tilgjengelig */}
+            {quizType === "adult" && window && window.funFactFromStarsPage && (
+              <>
+                <hr className="my-2" />
+                <span className="text-xs text-gray-700 block"><b>NASA APOD:</b> {window.funFactFromStarsPage.title}<br />{window.funFactFromStarsPage.explanation}</span>
+              </>
+            )}
+          </div>
+        )}
         <button
           className="mt-6 px-4 py-2 bg-yellow-600 text-white rounded hover:bg-yellow-700 transition"
           onClick={next}
