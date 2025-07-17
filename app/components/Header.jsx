@@ -1,8 +1,7 @@
 "use client";
 
-
+import React, { useState } from 'react';
 import Link from 'next/link';
-import { useState } from 'react';
 import MemeSlider from './MemeSlider';
 import BackgroundMusic from './BackgroundMusic';
 const memeSounds = [
@@ -22,7 +21,28 @@ export default function Header() {
   const [open, setOpen] = useState(false);
   const [memeOpen, setMemeOpen] = useState(false);
   const [activeMeme, setActiveMeme] = useState(null);
-  // Fjern audio-state, styres av BackgroundMusic
+  const [memeUnlocked, setMemeUnlocked] = useState(false);
+  // Konami-kode: ↑ ↑ ↓ ↓ ← → ← → B A
+  const konami = [
+    'ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown',
+    'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight', 'b', 'a'
+  ];
+  const [input, setInput] = useState([]);
+
+  // Lytt etter Konami-kode
+  React.useEffect(() => {
+    function onKey(e) {
+      setInput(prev => {
+        const next = [...prev, e.key].slice(-konami.length);
+        if (next.join(',') === konami.join(',')) {
+          setMemeUnlocked(true);
+        }
+        return next;
+      });
+    }
+    window.addEventListener('keydown', onKey);
+    return () => window.removeEventListener('keydown', onKey);
+  }, []);
 
   function handleToggleMeme() {
     if (!memeOpen) {
@@ -44,13 +64,19 @@ export default function Header() {
         <nav className="container mx-auto flex flex-col sm:flex-row items-center justify-between py-2 sm:py-4 px-2 sm:px-6 gap-2 sm:gap-0 relative">
           <div className="flex items-center w-full sm:w-auto justify-center sm:justify-start">
             <Link href="/" className="font-bold text-lg sm:text-xl hover:text-blue-400 transition mr-4 sm:mr-8">Home</Link>
-            {/* Meme slider switch */}
+            {/* Meme slider switch: alltid synlig, men disabled før Konami-kode */}
             <button
-              className={`ml-2 flex items-center gap-2 px-3 py-1 rounded-full border-2 ${memeOpen ? 'bg-yellow-400 border-yellow-600' : 'bg-gray-700 border-gray-500'} transition`}
-              onClick={handleToggleMeme}
+              className={`ml-2 flex items-center gap-2 px-3 py-1 rounded-full border-2 ${memeOpen ? 'bg-yellow-400 border-yellow-600' : 'bg-gray-700 border-gray-500'} transition ${!memeUnlocked ? 'opacity-60 cursor-not-allowed' : ''}`}
+              onClick={memeUnlocked ? handleToggleMeme : undefined}
               aria-label="Meme lyd av/på"
+              disabled={!memeUnlocked}
+              title={!memeUnlocked ? 'Lås opp med Konami-koden!' : 'Meme lyd av/på'}
             >
-              <span className={`w-5 h-5 rounded-full ${memeOpen ? 'bg-yellow-600' : 'bg-gray-400'} transition`}></span>
+              <span className={`w-5 h-5 rounded-full ${memeOpen ? 'bg-yellow-600' : 'bg-gray-400'} transition flex items-center justify-center`}>
+                {!memeUnlocked ? (
+                  <svg width="16" height="16" fill="none" viewBox="0 0 16 16"><circle cx="8" cy="8" r="7" stroke="#555" strokeWidth="2"/><path d="M8 10v2" stroke="#555" strokeWidth="2" strokeLinecap="round"/><circle cx="8" cy="8" r="2" fill="#555"/></svg>
+                ) : null}
+              </span>
               <span className={`font-bold text-xs ${memeOpen ? 'text-gray-900' : 'text-white'}`}>Meme</span>
             </button>
           </div>
