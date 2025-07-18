@@ -4,25 +4,33 @@ Galaxy Explorer er en moderne, responsiv Next.js-applikasjon som lar deg utforsk
 
 ## Hovedfunksjoner
 
+## Hovedfunksjoner
+
 - **Planeter og stjerner:** Fakta, bilder og utforskning av solsystemets planeter og kjente stjerner i Melkeveien.
 - **Dynamisk galleri:** Bildegalleri med modal-visning og navigasjon, basert på lokale bilder og/eller NASA-data.
+- **Quiz:** Interaktiv quiz for voksne og barn. Man må svare før man kan gå videre, og får poengsum til slutt.
+- **Meme-funksjon:** Skjult meme-modus med bilde/lyd, aktiveres med Konami-kode.
 - **Info-sider:** Moderne, rikt innhold om galaksen, universet og prosjektet.
 - **Responsivt design:** Optimalisert for mobil, nettbrett og desktop.
 - **Universell bakgrunn:** Animerte stjerner og kosmisk gradient gir en stemningsfull opplevelse.
 - **Hamburgermeny:** Mobilvennlig navigasjon med animert X-ikon.
 - **NASA Fun Fact:** Henter daglige eller tilfeldige fakta fra NASA APOD API og viser dem på planetside og stjerneside.
 
-## Teknologi
-- **Next.js 15** (App Router)
-- **React**
+## Spesielle funksjoner
+- **Quiz:** Man må svare før man kan trykke "Neste spørsmål". Poengsum vises etter siste spørsmål, og man kan prøve igjen.
+- **Bakgrunnsmusikk:** remix.mp3 spilles automatisk etter første klikk/tastetrykk.
+- **Meme-modus:** Skjult meme-funksjon med bilde/lyd, aktiveres med Konami-kode.
+- **NASA Fun Fact:** Fakta hentes fra NASA APOD API og vises nederst på planetside og stjerneside.
+- **Universell bakgrunn:** 3500+ animerte stjerner og kosmisk gradient på alle sider.
 - **Tailwind CSS**
-- **Ekte NASA-data/APOD API**
-- **Dynamisk import av bilder fra /public/Gallery**
-
-## Kom i gang
-1. Klon repoet:
-   ```bash
-   git clone https://github.com/BJ-Kodehode/galaxy.git
+## Mappestruktur
+- `app/` – Next.js App Router, sider og komponenter
+- `public/` – Bilder, remix.mp3 og statiske filer
+- `app/components/` – Gjenbrukbare React-komponenter (Header, MemeSlider, BackgroundMusic, PlanetCard, etc.)
+- `app/planets/` – PlanetsContent.jsx (planetside)
+- `app/stars/` – StarsContent.jsx (stjerneside)
+- `app/gallery/` – GalleryContent.jsx (bildegalleri)
+- `app/quiz/` – QuizContent.jsx (quiz med scoring og svarlogikk)
    cd galaxy
    ```
 2. Installer avhengigheter:
@@ -39,8 +47,6 @@ Galaxy Explorer er en moderne, responsiv Next.js-applikasjon som lar deg utforsk
 - `app/` – Next.js App Router, sider og komponenter
 - `public/` – Bilder, remix.mp3 og statiske filer
 - `app/components/` – Gjenbrukbare React-komponenter (Header, Footer, CosmicBackground, BackgroundMusic, etc.)
-- `app/planets/` – PlanetsContent.jsx (planetside)
-- `app/stars/` – StarsContent.jsx (stjerneside)
 - `app/gallery/` – GalleryContent.jsx (bildegalleri)
 - `app/info/` – InfoContent.jsx (info om galaksen)
 
