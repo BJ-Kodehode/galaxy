@@ -35,6 +35,11 @@ Galaxy Explorer er en moderne, responsiv Next.js-applikasjon som lar deg utforsk
 ## figma link:
 https://www.figma.com/design/phZ8b0czdjJROE1CnNxyaq/Galaxen?node-id=0-1&t=ypVf1b0Sqxdv3a3f-1
 
+## vercel link
+
+https://galaxy-gamma-three.vercel.app/
+
+
 ## Kom i gang
 
 1. Klon repoet:
