@@ -2,12 +2,16 @@
 
 import { useEffect, useState } from "react";
 
+interface GalleryImage {
+  [key: string]: string[];
+}
+
 export default function GalleryContent() {
-  const [galleryImages, setGalleryImages] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
-  const [modalOpen, setModalOpen] = useState(false);
-  const [currentIdx, setCurrentIdx] = useState(0);
+  const [galleryImages, setGalleryImages] = useState<string[]>([]);
+  const [loading, setLoading] = useState<boolean>(true);
+  const [error, setError] = useState<string | null>(null);
+  const [modalOpen, setModalOpen] = useState<boolean>(false);
+  const [currentIdx, setCurrentIdx] = useState<number>(0);
 
   useEffect(() => {
     async function fetchImages() {
@@ -16,26 +20,26 @@ export default function GalleryContent() {
       try {
         const res = await fetch("/api/gallery-images");
         if (!res.ok) throw new Error("Kunne ikke hente bilder");
-        const data = await res.json();
+        const data: GalleryImage = await res.json();
         setGalleryImages(data.images || []);
       } catch (e) {
-        setError(e.message);
+        setError((e as Error).message);
       }
       setLoading(false);
     }
     fetchImages();
   }, []);
 
-  const openModal = (idx) => {
+  const openModal = (idx: number) => {
     setCurrentIdx(idx);
     setModalOpen(true);
   };
   const closeModal = () => setModalOpen(false);
-  const prevImg = (e) => {
+  const prevImg = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.stopPropagation();
     setCurrentIdx((prev) => (prev - 1 + galleryImages.length) % galleryImages.length);
   };
-  const nextImg = (e) => {
+  const nextImg = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.stopPropagation();
     setCurrentIdx((prev) => (prev + 1) % galleryImages.length);
   };

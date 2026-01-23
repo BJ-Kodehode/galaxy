@@ -1,6 +1,16 @@
 "use client";
 
-export default function PlanetList({ planets }) {
+interface Planet {
+  id: string;
+  name: string;
+  description: string;
+}
+
+interface PlanetListProps {
+  planets: Planet[];
+}
+
+export default function PlanetList({ planets }: PlanetListProps) {
   if (!planets || planets.length === 0) return <div>Ingen planeter funnet.</div>;
   return (
     <ul className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">

@@ -1,11 +1,17 @@
-
 "use client";
 import { useEffect, useState } from "react";
 
+interface ApodData {
+  title: string;
+  url: string;
+  explanation: string;
+  media_type: string;
+}
+
 export default function Home() {
-  const [apod, setApod] = useState(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+  const [apod, setApod] = useState<ApodData | null>(null);
+  const [loading, setLoading] = useState<boolean>(true);
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     async function fetchApod() {
@@ -22,7 +28,7 @@ export default function Home() {
       try {
         const res = await fetch("https://api.nasa.gov/planetary/apod?api_key=DEMO_KEY");
         if (!res.ok) throw new Error("API-feil");
-        const data = await res.json();
+        const data: ApodData = await res.json();
         setApod(data);
         localStorage.setItem('apod-data', JSON.stringify(data));
         localStorage.setItem('apod-date', today);
@@ -50,46 +56,28 @@ export default function Home() {
           ) : error ? (
             <p className="text-red-600">{error}</p>
           ) : apod ? (
-            <>
-              {apod.media_type === "image" ? (
+            <div className="flex flex-col items-center w-full max-w-2xl">
+              {apod.media_type === 'image' && (
                 <img
                   src={apod.url}
                   alt={apod.title}
-                  className="rounded-lg shadow-lg w-full max-w-xl mb-2"
-                  style={{ objectFit: "cover" }}
+                  className="w-full rounded shadow mb-4"
                 />
-              ) : (
+              )}
+              {apod.media_type === 'video' && (
                 <iframe
                   src={apod.url}
                   title={apod.title}
-                  className="rounded-lg shadow-lg w-full max-w-xl mb-2"
-                  style={{ minHeight: 320, height: 320 }}
+                  className="w-full aspect-video rounded shadow mb-4"
                   allowFullScreen
                 />
               )}
-              <h2 className="text-lg font-bold text-blue-700 mb-2 text-center">{apod.title}</h2>
-              <p className="text-base text-white text-center mb-2">{apod.explanation}</p>
-              <span className="text-xs text-gray-500">Kilde: NASA APOD</span>
-            </>
+              <p className="text-center mb-2 font-semibold">{apod.title}</p>
+              <p className="text-sm text-gray-600 text-center max-w-xl">{apod.explanation}</p>
+            </div>
           ) : null}
         </div>
       </main>
-      <footer className="row-start-3 flex gap-4 flex-wrap items-center justify-center text-xs sm:text-sm px-2">
-        <span className="text-sm text-gray-500"></span>
-      </footer>
     </div>
   );
 }
-
-// Legg til animasjon i globals.css eller som style jsx:
-/*
-@keyframes galaxy-fade {
-  0% { opacity: 0.2; }
-  10% { opacity: 1; }
-  90% { opacity: 1; }
-  100% { opacity: 0.2; }
-}
-.animate-galaxy-fade {
-  animation: galaxy-fade 12s linear infinite;
-}
-*/

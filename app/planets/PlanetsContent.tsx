@@ -3,9 +3,20 @@
 import React, { useState } from 'react';
 import PlanetCard from '../components/PlanetCard';
 
+interface Planet {
+  name: string;
+  img: string;
+  facts: string[];
+}
+
+interface ApodData {
+  title: string;
+  explanation: string;
+}
+
 export default function PlanetsContent() {
   // Planetdata som array
-  const planets = [
+  const planets: Planet[] = [
     {
       name: "Merkur",
       img: "/Planeter/Merkur.jpg",
@@ -65,7 +76,7 @@ export default function PlanetsContent() {
       name: "Saturn",
       img: "/Planeter/Saturn.jpg",
       facts: [
-        "Berømt for sitt spektakulære ringsystem. Har mange måner, inkludert Titan med tykk atmosfære.",
+        "Berømt for sitt spektakulært ringsystem. Har mange måner, inkludert Titan med tykk atmosfære.",
         "Diameter: 116 460 km",
         "Avstand fra Sola: 1,43 milliarder km",
         "Atmosfære: Hydrogen, helium",
@@ -97,7 +108,7 @@ export default function PlanetsContent() {
   ];
 
   // Dvergplaneter
-  const dwarfPlanets = [
+  const dwarfPlanets: Planet[] = [
     {
       name: "Pluto",
       img: "/Planeter/Pluto.jpg",
@@ -156,11 +167,11 @@ export default function PlanetsContent() {
   ];
 
   // NASA APOD Fun Fact
-  const [funFact, setFunFact] = useState(null);
-  const [loadingFact, setLoadingFact] = useState(false);
-  const [factError, setFactError] = useState(null);
+  const [funFact, setFunFact] = useState<ApodData | null>(null);
+  const [loadingFact, setLoadingFact] = useState<boolean>(false);
+  const [factError, setFactError] = useState<string | null>(null);
 
-  async function fetchFunFact(date) {
+  async function fetchFunFact(date?: string) {
     setLoadingFact(true);
     setFactError(null);
     let url = `https://api.nasa.gov/planetary/apod?api_key=DEMO_KEY`;
@@ -168,7 +179,7 @@ export default function PlanetsContent() {
     try {
       const res = await fetch(url);
       if (!res.ok) throw new Error('API-feil');
-      const data = await res.json();
+      const data: ApodData = await res.json();
       setFunFact(data);
     } catch (e) {
       setFactError('Kunne ikke hente fun fact fra NASA.');
@@ -188,22 +199,22 @@ export default function PlanetsContent() {
     return random.toISOString().slice(0, 10);
   }
 
-  const [modalOpen, setModalOpen] = useState(false);
-  const [currentIdx, setCurrentIdx] = useState(0);
+  const [modalOpen, setModalOpen] = useState<boolean>(false);
+  const [currentIdx, setCurrentIdx] = useState<number>(0);
 
-  const openModal = (idx) => {
+  const openModal = (idx: number) => {
     setCurrentIdx(idx);
     setModalOpen(true);
   };
 
   const closeModal = () => setModalOpen(false);
 
-  const prevPlanet = (e) => {
+  const prevPlanet = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.stopPropagation();
     setCurrentIdx((idx) => (idx === 0 ? planets.length - 1 : idx - 1));
   };
 
-  const nextPlanet = (e) => {
+  const nextPlanet = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.stopPropagation();
     setCurrentIdx((idx) => (idx === planets.length - 1 ? 0 : idx + 1));
   };

@@ -1,6 +1,12 @@
 "use client";
 import { useRef, useEffect } from "react";
 
+interface BackgroundMusicProps {
+  play?: boolean;
+  onSoundChange?: (sound: string) => void;
+  onSoundEnd?: () => void;
+}
+
 const sounds = [
   "/sound/LOTR.mp3",
   "/sound/Ringing.mp3",
@@ -13,8 +19,9 @@ const sounds = [
   "/sound/quack_5.mp3",
 ];
 
-export default function BackgroundMusic({ play, onSoundChange, onSoundEnd }) {
-  const audioRef = useRef(null);
+export default function BackgroundMusic({ play = false, onSoundChange, onSoundEnd }: BackgroundMusicProps) {
+  const audioRef = useRef<HTMLAudioElement>(null);
+
   useEffect(() => {
     if (!play) {
       if (audioRef.current) {
@@ -23,10 +30,11 @@ export default function BackgroundMusic({ play, onSoundChange, onSoundEnd }) {
       }
       return;
     }
-    function playMemeSound(e) {
+
+    function playMemeSound(e: PointerEvent | KeyboardEvent) {
       if (!play) return;
       // Kun venstre museknapp
-      if (e && e.type === 'pointerdown' && e.button !== 0) return;
+      if (e instanceof PointerEvent && e.button !== 0) return;
       const src = sounds[Math.floor(Math.random() * sounds.length)];
       if (audioRef.current) {
         audioRef.current.src = src;
@@ -38,16 +46,18 @@ export default function BackgroundMusic({ play, onSoundChange, onSoundEnd }) {
         };
       }
     }
-    window.addEventListener('pointerdown', playMemeSound);
-    window.addEventListener('keydown', playMemeSound);
+
+    window.addEventListener('pointerdown', playMemeSound as EventListener);
+    window.addEventListener('keydown', playMemeSound as EventListener);
     return () => {
-      window.removeEventListener('pointerdown', playMemeSound);
-      window.removeEventListener('keydown', playMemeSound);
+      window.removeEventListener('pointerdown', playMemeSound as EventListener);
+      window.removeEventListener('keydown', playMemeSound as EventListener);
       if (audioRef.current) {
         audioRef.current.pause();
         audioRef.current.src = "";
       }
     };
-  }, [play]);
-  return <audio ref={audioRef} style={{ display: "none" }} />;
+  }, [play, onSoundChange, onSoundEnd]);
+
+  return <audio ref={audioRef} />;
 }

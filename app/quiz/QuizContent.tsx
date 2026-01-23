@@ -2,7 +2,14 @@
 
 import React, { useState } from "react";
 
-const adultQuiz = [
+interface QuizQuestion {
+  question: string;
+  options: string[];
+  answer: number;
+  explanation: string;
+}
+
+const adultQuiz: QuizQuestion[] = [
   {
     question: "Hva heter det supermassive sorte hullet i sentrum av Melkeveien?",
     options: ["Andromeda X", "Sagittarius A*", "Sirius B", "Betelgeuse"],
@@ -70,7 +77,7 @@ const adultQuiz = [
   }
 ];
 
-const kidsQuiz = [
+const kidsQuiz: QuizQuestion[] = [
   {
     question: "Hva heter planeten vi bor på?",
     options: ["Mars", "Jorden", "Jupiter"],
@@ -128,17 +135,17 @@ const kidsQuiz = [
 ];
 
 export default function QuizContent() {
-  const [quizType, setQuizType] = useState("adult");
-  const [step, setStep] = useState(0);
-  const [selected, setSelected] = useState(null);
-  const [showAnswer, setShowAnswer] = useState(false);
-  const [score, setScore] = useState(0);
-  const [finished, setFinished] = useState(false);
+  const [quizType, setQuizType] = useState<"adult" | "kids">("adult");
+  const [step, setStep] = useState<number>(0);
+  const [selected, setSelected] = useState<number | null>(null);
+  const [showAnswer, setShowAnswer] = useState<boolean>(false);
+  const [score, setScore] = useState<number>(0);
+  const [finished, setFinished] = useState<boolean>(false);
 
   const quiz = quizType === "adult" ? adultQuiz : kidsQuiz;
   const current = quiz[step];
 
-  function handleOption(idx) {
+  function handleOption(idx: number) {
     setSelected(idx);
     setShowAnswer(true);
     if (idx === current.answer) {
@@ -212,13 +219,6 @@ export default function QuizContent() {
                 <b>Fasit:</b> {current.options.length > 0 && current.answer !== null ? `${String.fromCharCode(65 + current.answer)}) ${current.options[current.answer]}` : current.explanation}
                 <br />
                 <span className="text-sm">{current.explanation}</span>
-                {/* Ekstra info fra NASA APOD hvis tilgjengelig */}
-                {quizType === "adult" && window && window.funFactFromStarsPage && (
-                  <>
-                    <hr className="my-2" />
-                    <span className="text-xs text-gray-700 block"><b>NASA APOD:</b> {window.funFactFromStarsPage.title}<br />{window.funFactFromStarsPage.explanation}</span>
-                  </>
-                )}
               </div>
             )}
             <button

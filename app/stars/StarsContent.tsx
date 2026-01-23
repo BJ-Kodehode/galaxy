@@ -1,18 +1,20 @@
 "use client";
 
-
-
 import StarList from '../components/StarList';
-import { useSearchParams } from 'next/navigation';
 import { useEffect, useState } from 'react';
+
+interface ApodData {
+  title: string;
+  explanation: string;
+}
 
 export default function StarsContent() {
   // NASA APOD Fun Fact
-  const [funFact, setFunFact] = useState(null);
-  const [loadingFact, setLoadingFact] = useState(false);
-  const [factError, setFactError] = useState(null);
+  const [funFact, setFunFact] = useState<ApodData | null>(null);
+  const [loadingFact, setLoadingFact] = useState<boolean>(false);
+  const [factError, setFactError] = useState<string | null>(null);
 
-  async function fetchFunFact(date) {
+  async function fetchFunFact(date?: string) {
     setLoadingFact(true);
     setFactError(null);
     let url = `https://api.nasa.gov/planetary/apod?api_key=DEMO_KEY`;
@@ -20,7 +22,7 @@ export default function StarsContent() {
     try {
       const res = await fetch(url);
       if (!res.ok) throw new Error('API-feil');
-      const data = await res.json();
+      const data: ApodData = await res.json();
       setFunFact(data);
     } catch (e) {
       setFactError('Kunne ikke hente fun fact fra NASA.');
@@ -58,8 +60,6 @@ export default function StarsContent() {
         <p>Stjerner kan danne spektakulære stjernehoper og fargerike tåker, og noen avslutter livet sitt i dramatiske supernovaeksplosjoner.</p>
         <p className="italic text-base text-gray-600">Kilde: NASA, Store norske leksikon</p>
       </div>
-
-
 
       {/* NASA Fun Fact */}
       <div className="mt-12 mb-4 flex flex-col items-center min-h-[800px]">

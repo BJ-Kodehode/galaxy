@@ -1,6 +1,16 @@
 "use client";
 
-export default function StarList({ stars }) {
+interface Star {
+  id: string;
+  name: string;
+  description: string;
+}
+
+interface StarListProps {
+  stars: Star[];
+}
+
+export default function StarList({ stars }: StarListProps) {
   if (!stars || stars.length === 0) return <div>Ingen stjerner funnet.</div>;
   return (
     <ul className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">

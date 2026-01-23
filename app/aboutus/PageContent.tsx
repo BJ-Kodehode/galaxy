@@ -10,8 +10,8 @@ export default function PageContent() {
       </p>
       <h2 className="text-xl font-bold mt-6 mb-2">Who Are We?</h2>
       <p className="mb-4">
-        We’re a team of cosmic coders, starry-eyed designers, and caffeine-fueled aliens who got tired of boring terrestrial websites.<br/>
-        Our HQ? Somewhere between Saturn’s rings and your mom’s basement (with fiber internet, of course).
+        We're a team of cosmic coders, starry-eyed designers, and caffeine-fueled aliens who got tired of boring terrestrial websites.<br/>
+        Our HQ? Somewhere between Saturn's rings and your mom's basement (with fiber internet, of course).
       </p>
       <h2 className="text-xl font-bold mt-6 mb-2">What Do We Do?</h2>
       <ul className="list-disc list-inside mb-4">
@@ -27,12 +27,12 @@ export default function PageContent() {
         <li>Wormhole-compatible SEO (your site will be found in every galaxy)</li>
       </ul>
       <h2 className="text-xl font-bold mt-6 mb-2">Testimonials</h2>
-      <blockquote className="border-l-4 border-blue-400 pl-4 italic mb-2">“Best site I’ve ever seen in this dimension.”<br/>— Zlorb, Nebula Influencer</blockquote>
-      <blockquote className="border-l-4 border-yellow-400 pl-4 italic mb-4">“Thanks to them, I finally outranked NASA.”<br/>— @MoonBooty69</blockquote>
+      <blockquote className="border-l-4 border-blue-400 pl-4 italic mb-2">"Best site I've ever seen in this dimension."<br/>— Zlorb, Nebula Influencer</blockquote>
+      <blockquote className="border-l-4 border-yellow-400 pl-4 italic mb-4">"Thanks to them, I finally outranked NASA."<br/>— @MoonBooty69</blockquote>
       <h2 className="text-xl font-bold mt-6 mb-2">Contact Us</h2>
       <p>
-        Want a site that’s out of this world? Beam us a message!<br/>
-        Or just yell into a black hole — we’ll pick it up.
+        Want a site that's out of this world? Beam us a message!<br/>
+        Or just yell into a black hole — we'll pick it up.
       </p>
     </main>
   );
