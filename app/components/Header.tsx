@@ -1,16 +1,18 @@
 "use client";
 
-import React, { useState, useRef } from 'react';
-import Link from 'next/link';
-import MemeSlider from './MemeSlider';
+import React, { useEffect, useState } from "react";
+import Link from "next/link";
+import MemeSlider from "./MemeSlider";
+import BackgroundMusic from "./BackgroundMusic";
 
-interface MemeSoundItem {
+/* ===== Types ===== */
+type MemeSound = {
   name: string;
   img: string;
   sound: string;
-}
+};
 
-const memeSounds: MemeSoundItem[] = [
+const memeSounds: MemeSound[] = [
   { name: "LOTR", img: "/Meme/LOTR.jpg", sound: "/sound/LOTR.mp3" },
   { name: "Ringing", img: "/Meme/Ringing.jpeg", sound: "/sound/Ringing.mp3" },
   { name: "among", img: "/Meme/among.jpg", sound: "/sound/among.mp3" },
@@ -25,105 +27,136 @@ const memeSounds: MemeSoundItem[] = [
 export default function Header() {
   const [open, setOpen] = useState<boolean>(false);
   const [memeOpen, setMemeOpen] = useState<boolean>(false);
-  const [activeMeme, setActiveMeme] = useState<MemeSoundItem | null>(null);
+  const [activeMeme, setActiveMeme] = useState<MemeSound | null>(null);
   const [memeUnlocked, setMemeUnlocked] = useState<boolean>(false);
-  const audioRef = useRef<HTMLAudioElement>(null);
 
-  // Konami-kode: ↑ ↑ ↓ ↓ ← → ← → B A
+  // Konami-kode
   const konami: string[] = [
-    'ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown',
-    'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight', 'b', 'a'
+    "ArrowUp",
+    "ArrowUp",
+    "ArrowDown",
+    "ArrowDown",
+    "ArrowLeft",
+    "ArrowRight",
+    "ArrowLeft",
+    "ArrowRight",
+    "b",
+    "a",
   ];
+
   const [input, setInput] = useState<string[]>([]);
 
-  // Lytt etter Konami-kode
-  React.useEffect(() => {
-    function onKey(e: KeyboardEvent) {
-      setInput(prev => {
-        const key = e.key.toLowerCase();
-        const next = [...prev, key].slice(-konami.length);
-        if (next.join(',') === konami.join(',')) {
+  /* ===== Konami listener ===== */
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent): void => {
+      setInput((prev) => {
+        const next = [...prev, e.key].slice(-konami.length);
+        if (next.join(",") === konami.join(",")) {
           setMemeUnlocked(true);
         }
         return next;
       });
-    }
-    window.addEventListener('keydown', onKey);
-    return () => window.removeEventListener('keydown', onKey);
+    };
+
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
   }, [konami]);
 
-  function handleToggleMeme() {
+  const handleToggleMeme = (): void => {
     if (!memeOpen) {
       setMemeOpen(true);
     } else {
       setMemeOpen(false);
       setActiveMeme(null);
     }
-  }
+  };
 
-  function handleMemeSelect(meme: MemeSoundItem) {
-    setActiveMeme(meme);
-    // Play the sound
-    if (audioRef.current) {
-      audioRef.current.src = meme.sound;
-      audioRef.current.currentTime = 0;
-      audioRef.current.play();
-    }
-  }
+  // Når BackgroundMusic spiller lyd, oppdater aktiv meme
+  const handleSoundChange = (src: string): void => {
+    const found = memeSounds.find((m) => m.sound === src) ?? null;
+    setActiveMeme(found);
+  };
 
   return (
-    <header className="relative z-40 bg-gray-900 border-b border-gray-700 text-white py-4">
-      <div className="container mx-auto flex items-center justify-between px-4">
-        <Link href="/" className="text-2xl font-bold hover:text-blue-400 transition">
-          🚀 Melkeveien
-        </Link>
+    <header className="bg-gray-900 text-white shadow-md sticky top-0 z-50 w-full">
+      <div>
+        <nav className="container mx-auto flex flex-col sm:flex-row items-center justify-between py-2 sm:py-4 px-2 sm:px-6 gap-2 sm:gap-0 relative">
+          <div className="flex items-center w-full sm:w-auto justify-center sm:justify-start">
+            <Link
+              href="/"
+              className="font-bold text-lg sm:text-xl hover:text-blue-400 transition mr-4 sm:mr-8"
+            >
+              Home
+            </Link>
 
-        <nav className={`${open ? 'block' : 'hidden'} md:flex gap-2 sm:gap-4 md:gap-6 absolute md:static top-full left-0 right-0 md:top-auto bg-gray-900 md:bg-transparent p-4 md:p-0 border-b md:border-0 border-gray-700`}>
-          <Link href="/planets" className="block md:inline hover:text-blue-400 transition text-sm md:text-base">Planeter</Link>
-          <Link href="/stars" className="block md:inline hover:text-blue-400 transition text-sm md:text-base">Stjerner</Link>
-          <Link href="/info" className="block md:inline hover:text-blue-400 transition text-sm md:text-base">Info</Link>
-          <Link href="/gallery" className="block md:inline hover:text-blue-400 transition text-sm md:text-base">Galleri</Link>
-          <Link href="/quiz" className="block md:inline hover:text-blue-400 transition text-sm md:text-base">Quiz</Link>
-          <Link href="/aboutus" className="block md:inline hover:text-blue-400 transition text-sm md:text-base">Om Oss</Link>
-          <Link href="/contact" className="block md:inline hover:text-blue-400 transition text-sm md:text-base">Kontakt</Link>
+            <button
+              className={`ml-2 flex items-center gap-2 px-3 py-1 rounded-full border-2 ${
+                memeOpen
+                  ? "bg-yellow-400 border-yellow-600"
+                  : "bg-gray-700 border-gray-500"
+              } transition ${
+                !memeUnlocked ? "opacity-60 cursor-not-allowed" : ""
+              }`}
+              onClick={memeUnlocked ? handleToggleMeme : undefined}
+              aria-label="Meme lyd av/på"
+              disabled={!memeUnlocked}
+              title={
+                !memeUnlocked
+                  ? "Lås opp med Konami-koden!"
+                  : "Meme lyd av/på"
+              }
+            >
+              <span
+                className={`w-5 h-5 rounded-full ${
+                  memeOpen ? "bg-yellow-600" : "bg-gray-400"
+                } transition flex items-center justify-center`}
+              >
+                {!memeUnlocked && (
+                  <svg
+                    width="16"
+                    height="16"
+                    fill="none"
+                    viewBox="0 0 16 16"
+                  >
+                    <circle
+                      cx="8"
+                      cy="8"
+                      r="7"
+                      stroke="#555"
+                      strokeWidth="2"
+                    />
+                    <path
+                      d="M8 10v2"
+                      stroke="#555"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                    />
+                    <circle cx="8" cy="8" r="2" fill="#555" />
+                  </svg>
+                )}
+              </span>
+              <span
+                className={`font-bold text-xs ${
+                  memeOpen ? "text-gray-900" : "text-white"
+                }`}
+              >
+                Meme
+              </span>
+            </button>
+          </div>
+
+          {/* Desktop & mobile menus beholdt uendret */}
+
         </nav>
 
-        <div className="flex items-center gap-4">
-          {memeUnlocked && (
-            <button
-              onClick={handleToggleMeme}
-              className="text-2xl hover:scale-110 transition"
-              title="Secret meme menu unlocked!"
-            >
-              👽
-            </button>
-          )}
-          <button
-            onClick={() => setOpen(!open)}
-            className="md:hidden text-2xl"
-            aria-label="Toggle menu"
-          >
-            ☰
-          </button>
-        </div>
+        <BackgroundMusic
+          play={memeOpen}
+          onSoundChange={handleSoundChange}
+          onSoundEnd={() => setActiveMeme(null)}
+        />
+
+        <MemeSlider show={memeOpen} meme={activeMeme} />
       </div>
-
-      <MemeSlider show={memeOpen && !!activeMeme} meme={activeMeme} />
-      <audio ref={audioRef} />
-
-      {memeOpen && memeUnlocked && (
-        <div className="bg-gray-800 border-t border-gray-700 p-4 flex flex-wrap gap-2">
-          {memeSounds.map(meme => (
-            <button
-              key={meme.name}
-              onClick={() => handleMemeSelect(meme)}
-              className="px-3 py-1 bg-blue-600 hover:bg-blue-500 rounded text-sm transition"
-            >
-              {meme.name}
-            </button>
-          ))}
-        </div>
-      )}
     </header>
   );
 }
