@@ -40,7 +40,8 @@ export default function Header() {
   React.useEffect(() => {
     function onKey(e: KeyboardEvent) {
       setInput(prev => {
-        const next = [...prev, e.key].slice(-konami.length);
+        const key = e.key.toLowerCase();
+        const next = [...prev, key].slice(-konami.length);
         if (next.join(',') === konami.join(',')) {
           setMemeUnlocked(true);
         }
@@ -49,7 +50,7 @@ export default function Header() {
     }
     window.addEventListener('keydown', onKey);
     return () => window.removeEventListener('keydown', onKey);
-  }, []);
+  }, [konami]);
 
   function handleToggleMeme() {
     if (!memeOpen) {
@@ -77,33 +78,34 @@ export default function Header() {
           🚀 Melkeveien
         </Link>
 
-        <button
-          onClick={() => setOpen(!open)}
-          className="md:hidden text-2xl"
-          aria-label="Toggle menu"
-        >
-          ☰
-        </button>
-
-        <nav className={`${open ? 'block' : 'hidden'} md:flex gap-6 absolute md:static top-full left-0 right-0 md:top-auto bg-gray-900 md:bg-transparent p-4 md:p-0 border-b md:border-0 border-gray-700`}>
-          <Link href="/planets" className="block md:inline hover:text-blue-400 transition">Planeter</Link>
-          <Link href="/stars" className="block md:inline hover:text-blue-400 transition">Stjerner</Link>
-          <Link href="/info" className="block md:inline hover:text-blue-400 transition">Info</Link>
-          <Link href="/gallery" className="block md:inline hover:text-blue-400 transition">Galleri</Link>
-          <Link href="/quiz" className="block md:inline hover:text-blue-400 transition">Quiz</Link>
-          <Link href="/aboutus" className="block md:inline hover:text-blue-400 transition">Om Oss</Link>
-          <Link href="/contact" className="block md:inline hover:text-blue-400 transition">Kontakt</Link>
+        <nav className={`${open ? 'block' : 'hidden'} md:flex gap-2 sm:gap-4 md:gap-6 absolute md:static top-full left-0 right-0 md:top-auto bg-gray-900 md:bg-transparent p-4 md:p-0 border-b md:border-0 border-gray-700`}>
+          <Link href="/planets" className="block md:inline hover:text-blue-400 transition text-sm md:text-base">Planeter</Link>
+          <Link href="/stars" className="block md:inline hover:text-blue-400 transition text-sm md:text-base">Stjerner</Link>
+          <Link href="/info" className="block md:inline hover:text-blue-400 transition text-sm md:text-base">Info</Link>
+          <Link href="/gallery" className="block md:inline hover:text-blue-400 transition text-sm md:text-base">Galleri</Link>
+          <Link href="/quiz" className="block md:inline hover:text-blue-400 transition text-sm md:text-base">Quiz</Link>
+          <Link href="/aboutus" className="block md:inline hover:text-blue-400 transition text-sm md:text-base">Om Oss</Link>
+          <Link href="/contact" className="block md:inline hover:text-blue-400 transition text-sm md:text-base">Kontakt</Link>
         </nav>
 
-        {memeUnlocked && (
+        <div className="flex items-center gap-4">
+          {memeUnlocked && (
+            <button
+              onClick={handleToggleMeme}
+              className="text-2xl hover:scale-110 transition"
+              title="Secret meme menu unlocked!"
+            >
+              👽
+            </button>
+          )}
           <button
-            onClick={handleToggleMeme}
-            className="hidden md:block text-xl"
-            title="Secret meme menu unlocked!"
+            onClick={() => setOpen(!open)}
+            className="md:hidden text-2xl"
+            aria-label="Toggle menu"
           >
-            👽
+            ☰
           </button>
-        )}
+        </div>
       </div>
 
       <MemeSlider show={memeOpen && !!activeMeme} meme={activeMeme} />
