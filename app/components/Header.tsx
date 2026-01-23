@@ -1,9 +1,8 @@
 "use client";
 
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import Link from 'next/link';
 import MemeSlider from './MemeSlider';
-import BackgroundMusic from './BackgroundMusic';
 
 interface MemeSoundItem {
   name: string;
@@ -28,7 +27,7 @@ export default function Header() {
   const [memeOpen, setMemeOpen] = useState<boolean>(false);
   const [activeMeme, setActiveMeme] = useState<MemeSoundItem | null>(null);
   const [memeUnlocked, setMemeUnlocked] = useState<boolean>(false);
-  const [playing, setPlaying] = useState<boolean>(false);
+  const audioRef = useRef<HTMLAudioElement>(null);
 
   // Konami-kode: ↑ ↑ ↓ ↓ ← → ← → B A
   const konami: string[] = [
@@ -63,7 +62,12 @@ export default function Header() {
 
   function handleMemeSelect(meme: MemeSoundItem) {
     setActiveMeme(meme);
-    setPlaying(true);
+    // Play the sound
+    if (audioRef.current) {
+      audioRef.current.src = meme.sound;
+      audioRef.current.currentTime = 0;
+      audioRef.current.play();
+    }
   }
 
   return (
@@ -103,7 +107,7 @@ export default function Header() {
       </div>
 
       <MemeSlider show={memeOpen && !!activeMeme} meme={activeMeme} />
-      <BackgroundMusic play={playing} onSoundChange={() => {}} onSoundEnd={() => setPlaying(false)} />
+      <audio ref={audioRef} />
 
       {memeOpen && memeUnlocked && (
         <div className="bg-gray-800 border-t border-gray-700 p-4 flex flex-wrap gap-2">
