@@ -86,7 +86,7 @@ export default function Header() {
               href="/"
               className="font-bold text-lg sm:text-xl hover:text-blue-400 transition mr-4 sm:mr-8"
             >
-              Home
+             🚀 Melkeveien
             </Link>
 
             <button
@@ -145,9 +145,16 @@ export default function Header() {
             </button>
           </div>
 
-          {/* Desktop & mobile menus beholdt uendret */}
-
-        </nav>
+              <nav className={`flex gap-2 sm:gap-4 md:gap-6 bg-gray-900 md:bg-transparent p-4 md:p-0 border-b md:border-0 border-gray-700`}>
+                <Link href="/planets" className="block md:inline hover:text-blue-400 transition text-sm md:text-base">Planeter</Link>
+                <Link href="/stars" className="block md:inline hover:text-blue-400 transition text-sm md:text-base">Stjerner</Link>
+                <Link href="/info" className="block md:inline hover:text-blue-400 transition text-sm md:text-base">Info</Link>
+                <Link href="/gallery" className="block md:inline hover:text-blue-400 transition text-sm md:text-base">Galleri</Link>
+                <Link href="/quiz" className="block md:inline hover:text-blue-400 transition text-sm md:text-base">Quiz</Link>
+                <Link href="/aboutus" className="block md:inline hover:text-blue-400 transition text-sm md:text-base">Om Oss</Link>
+                <Link href="/contact" className="block md:inline hover:text-blue-400 transition text-sm md:text-base">Kontakt</Link>
+              </nav>
+          </nav>
 
         <BackgroundMusic
           play={memeOpen}

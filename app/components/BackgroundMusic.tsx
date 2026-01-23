@@ -26,7 +26,12 @@ export default function BackgroundMusic({ play = false, onSoundChange, onSoundEn
     if (!play) {
       if (audioRef.current) {
         audioRef.current.pause();
-        audioRef.current.src = "";
+        try {
+          audioRef.current.removeAttribute('src');
+          audioRef.current.load();
+        } catch (e) {
+          // ignore any errors when clearing the source
+        }
       }
       return;
     }
@@ -39,7 +44,12 @@ export default function BackgroundMusic({ play = false, onSoundChange, onSoundEn
       if (audioRef.current) {
         audioRef.current.src = src;
         audioRef.current.currentTime = 0;
-        audioRef.current.play();
+        const p = audioRef.current.play();
+        if (p && typeof (p as Promise<void>).catch === 'function') {
+          (p as Promise<void>).catch(() => {
+            // ignore play() rejections (autoplay blocked or user gesture issues)
+          });
+        }
         if (typeof onSoundChange === 'function') onSoundChange(src);
         audioRef.current.onended = () => {
           if (typeof onSoundEnd === 'function') onSoundEnd();
@@ -54,7 +64,12 @@ export default function BackgroundMusic({ play = false, onSoundChange, onSoundEn
       window.removeEventListener('keydown', playMemeSound as EventListener);
       if (audioRef.current) {
         audioRef.current.pause();
-        audioRef.current.src = "";
+        try {
+          audioRef.current.removeAttribute('src');
+          audioRef.current.load();
+        } catch (e) {
+          // ignore
+        }
       }
     };
   }, [play, onSoundChange, onSoundEnd]);
