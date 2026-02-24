@@ -17,6 +17,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" style={{ height: "100%", fontFamily: 'Audiowide, Arial, Helvetica, sans-serif' }}>
+      <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+      </head>
       <body
         className="antialiased min-h-screen flex flex-col"
         style={{ minHeight: "100vh", display: "flex", flexDirection: "column" }}

@@ -29,10 +29,11 @@ const PlanetCard: React.FC<PlanetCardProps> = ({
     <Image
       src={img}
       alt={name}
-      className="mb-2 sm:mb-4 rounded object-scale-down max-w-full max-h-40 sm:max-h-60"
+      className="mb-2 sm:mb-4 rounded object-cover w-full h-auto"
       draggable={false}
-      width={240}
-      height={160}
+      width={800}
+      height={533}
+      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
       priority={false}
     />
     <h2 className="text-lg sm:text-2xl font-semibold mb-1 sm:mb-2 text-white text-center">

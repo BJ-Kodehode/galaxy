@@ -303,7 +303,7 @@ export default function PlanetsContent() {
       </div>
 
       {/* NASA Fun Fact */}
-      <div className="mt-12 mb-4 flex flex-col items-center min-h-[800px]">
+      <div className="mt-12 mb-4 flex flex-col items-center min-h-[300px] sm:min-h-[800px]">
         <h2 className="text-lg sm:text-xl font-bold text-indigo-700 mb-2">NASA Fun Fact</h2>
         {loadingFact ? (
           <p className="text-gray-600">Laster ...</p>
